@@ -196,7 +196,7 @@ if ($id==false) {
                                     </ul>
                                 </div>
                                 <div class="profile-btn">
-                                    <a href="my-profile.html" class="default-btn">View Profile</a>
+                                    <a href="my-profile.php" class="default-btn">View Profile</a>
                                 </div>
                             </div>
                             <div class="widget widget-watch-video">
@@ -742,35 +742,9 @@ if ($id==false) {
                                     <a href="#"><img src="assets/images/explore-events/explore-2.jpg" alt="image"></a>
                                 </article>
                             </div>
-                            <div class="widget widget-who-following">
-                                <h3 class="widget-title">Who's Following</h3>
-                                
-                                <div class="following-item d-flex justify-content-between align-items-center">
-                                    <a href="#"><img src="assets/images/user/user-42.jpg" class="rounded-circle" alt="image"></a>
-                                    <span class="name"><a href="#">Shawn Lynch</a></span>
-                                    <span class="add-friend"><a href="#">Add</a></span>
-                                </div>
-                                <div class="following-item d-flex justify-content-between align-items-center">
-                                    <a href="#"><img src="assets/images/user/user-43.jpg" class="rounded-circle" alt="image"></a>
-                                    <span class="name"><a href="#">Kenneth Perry</a></span>
-                                    <span class="add-friend"><a href="#">Add</a></span>
-                                </div>
-                                <div class="following-item d-flex justify-content-between align-items-center">
-                                    <a href="#"><img src="assets/images/user/user-44.jpg" class="rounded-circle" alt="image"></a>
-                                    <span class="name"><a href="#">Janet Suarez</a></span>
-                                    <span class="add-friend"><a href="#">Add</a></span>
-                                </div>
-                                <div class="following-item d-flex justify-content-between align-items-center">
-                                    <a href="#"><img src="assets/images/user/user-45.jpg" class="rounded-circle" alt="image"></a>
-                                    <span class="name"><a href="#">Brian Mingo</a></span>
-                                    <span class="add-friend"><a href="#">Add</a></span>
-                                </div>
-                                <div class="following-item d-flex justify-content-between align-items-center">
-                                    <a href="#"><img src="assets/images/user/user-46.jpg" class="rounded-circle" alt="image"></a>
-                                    <span class="name"><a href="#">Julia Ramos</a></span>
-                                    <span class="add-friend"><a href="#">Add</a></span>
-                                </div>
-                            </div>
+                            <!-- whos following  -->
+                            <?php include_once"./includes/who_S_Following.php"; ?>
+                            <!-- end whos following  -->
                         </aside>
                     </div>
                 </div>

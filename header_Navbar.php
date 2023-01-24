@@ -419,10 +419,10 @@ $donner =$req1->fetch();
                                             </div>
                                             <ul class="profile-body">
                                                 <li><i class="flaticon-user"></i> <a href="my-profile.php">My Profile</a></li>
-                                                <li><i class="flaticon-settings"></i> <a href="setting.html">Setting</a></li>
-                                                <li><i class="flaticon-privacy"></i> <a href="privacy.html">Privacy</a></li>
-                                                <li><i class="flaticon-information"></i> <a href="help-and-support.html">Help & Support</a></li>
-                                                <li><i class="flaticon-logout"></i> <a href="index.html">Logout</a></li>
+                                                <li><i class="flaticon-settings"></i> <a href="setting.php">Setting</a></li>
+                                                <li><i class="flaticon-privacy"></i> <a href="privacy.php">Privacy</a></li>
+                                                <li><i class="flaticon-information"></i> <a href="help-and-support.php">Help & Support</a></li>
+                                                <li><i class="flaticon-logout"></i> <a href="index.php">Logout</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -682,22 +682,22 @@ $donner =$req1->fetch();
                                             <a href="#" class="dropdown-bs-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div class="menu-profile">
                                                     <img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image">
-                                                    <span class="name">Matthew</span>
+                                                    <span class="name"><?php echo $donner['nom_users']; ?></span>
                                                     <span class="status-online"></span>
                                                 </div>
                                             </a>
                 
                                             <div class="dropdown-menu">
                                                 <div class="profile-header">
-                                                    <h3>Matthew Turner</h3>
-                                                    <a href="mailto:matthew507@gmail.com">matthew507@gmail.com</a>
+                                                    <h3><?php echo $donner['nom_users']." ".$donner['prenom_users'];?></h3>
+                                                    <a href="mailto:<?php echo $donner['email_users'];?>"><?php echo $donner['email_users'];?></a>
                                                 </div>
                                                 <ul class="profile-body">
-                                                    <li><i class="flaticon-user"></i> <a href="my-profile.html">My Profile</a></li>
-                                                    <li><i class="flaticon-settings"></i> <a href="setting.html">Setting</a></li>
-                                                    <li><i class="flaticon-privacy"></i> <a href="privacy.html">Privacy</a></li>
-                                                    <li><i class="flaticon-information"></i> <a href="help-and-support.html">Help & Support</a></li>
-                                                    <li><i class="flaticon-logout"></i> <a href="index.html">Logout</a></li>
+                                                    <li><i class="flaticon-user"></i> <a href="my-profile.php">My Profile</a></li>
+                                                    <li><i class="flaticon-settings"></i> <a href="setting.php">Setting</a></li>
+                                                    <li><i class="flaticon-privacy"></i> <a href="privacy.php">Privacy</a></li>
+                                                    <li><i class="flaticon-information"></i> <a href="help-and-support.php">Help & Support</a></li>
+                                                    <li><i class="flaticon-logout"></i> <a href="index.php">Logout</a></li>
                                                 </ul>
                                             </div>
                                         </div>

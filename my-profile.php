@@ -176,8 +176,8 @@ if ($id==false) {
                                 </div>
                             </div>
                             <div class="info-text ms-3">
-                                <h3><a href="#">Matthew Turner</a></h3>
-                                <span><a href="mailto:matthew@gmail.com">matthew@gmail.com</a></span>
+                                <h3><a href="#"><?php echo $donner['nom_users']." ".$donner['prenom_users'];?></a></h3>
+                                <span><a href="mailto:<?php echo $donner['email_users'];?>"><?php echo $donner['email_users'];?></a></span>
                             </div>
                             <ul class="statistics">
                                 <li>
@@ -957,106 +957,7 @@ if ($id==false) {
         
                             <div class="col-lg-3 col-md-12">
                                 <aside class="widget-area">
-                                    <div class="widget widget-birthday">
-                                        <div class="birthday-title d-flex justify-content-between align-items-center">
-                                            <h3>Today Birthdays</h3>
-                                            <span><a href="#">See All</a></span>
-                                        </div>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg1" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Earline Benally</a>
-                                                </h4>
-                                                <span>Today</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg2" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Jack Gulley</a>
-                                                </h4>
-                                                <span>Today</span>
-                                            </div>
-                                        </article>
-        
-                                        <div class="birthday-title d-flex justify-content-between align-items-center">
-                                            <h3>Recent Birthdays</h3>
-                                            <span><a href="#">See All</a></span>
-                                        </div>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg3" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Lolita Benally</a>
-                                                </h4>
-                                                <span>May 18</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg4" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Russell Gulley</a>
-                                                </h4>
-                                                <span>May 20</span>
-                                            </div>
-                                        </article>
-        
-                                        <div class="birthday-title d-flex justify-content-between align-items-center">
-                                            <h3>Coming Birthdays</h3>
-                                            <span><a href="#">See All</a></span>
-                                        </div>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg5" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Cindy L. Wilson</a>
-                                                </h4>
-                                                <span>July 18</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg6" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Patricia E. Looney</a>
-                                                </h4>
-                                                <span>July 20</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg7" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">James G. Nelson</a>
-                                                </h4>
-                                                <span>July 21</span>
-                                            </div>
-                                        </article>
-                                    </div>
+                                    
                                     <div class="widget widget-explore-events">
                                         <h3 class="widget-title">Explore Events</h3>
         
@@ -1120,37 +1021,16 @@ if ($id==false) {
 
                                     <ul class="information-list">
                                         <li>
-                                            <span>Email:</span> <a href="mailto:info@zust.com">info@zust.com</a>
-                                        </li>
-                                        <li>
-                                            <span>Birthday:</span> May 07, 1984
+                                            <span>Email:</span> <a href="mailto:<?php echo $donner['email_users'];?>"><?php echo $donner['email_users'];?></a>
                                         </li>
                                         <li>
                                             <span>Occupation:</span> UX Designer
                                         </li>
                                         <li>
-                                            <span>Birthplace:</span> 4988 Woodland Terrace Citrus Heights, CA 95610
+                                            <span>Phone:</span> <a href="tel:<?php echo $donner['phone_users'];?>"><?php echo $donner['phone_users'];?></a>
                                         </li>
                                         <li>
-                                            <span>Phone:</span> <a href="tel:916-879-7755">916-879-7755</a>
-                                        </li>
-                                        <li>
-                                            <span>Gender:</span> Men
-                                        </li>
-                                        <li>
-                                            <span>Relationship Status:</span> Single
-                                        </li>
-                                        <li>
-                                            <span>Blood Group:</span> A+ Positive
-                                        </li>
-                                        <li>
-                                            <span>Website:</span> <a href="#">www.zust.com</a>
-                                        </li>
-                                        <li>
-                                            <span>Social Link:</span> <a href="#">www.zust.com</a>
-                                        </li>
-                                        <li>
-                                            <span>Languages:</span> English, Turkish
+                                            <span>Gender:</span> <?php echo $donner['gender_users'];?>
                                         </li>
                                     </ul>
                                 </div>
@@ -1177,72 +1057,9 @@ if ($id==false) {
                                         </div>
                                     </div>
 
-                                    <div class="information-box-content">
-                                        <div class="information-header d-flex justify-content-between align-items-center">
-                                            <div class="title">Education & Work</div>
-    
-                                            <div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                                                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                                                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="box-content">
-                                            <p class="designation">Master of Computer Science <span>(2018 - 2020)</span></p>
-                                            <span class="title">University of Stanford</span>
-                                            <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
+                                   
 
-                                        <div class="box-content">
-                                            <p class="designation">Bachelor of Computer Science <span>(2014 - 2018)</span></p>
-                                            <span class="title">Massachusetts Institute of Technology</span>
-                                            <p>Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
-
-                                        <div class="box-content">
-                                            <p class="designation">Senior UX/UI Designer <span>(Jun 2020 - Present)</span></p>
-                                            <span class="title">Themeforest</span>
-                                            <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
-
-                                        <div class="box-content">
-                                            <p class="designation">Product Designer <span>(Jan 2018 - May 2019)</span></p>
-                                            <span class="title">Themeforest</span>
-                                            <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="information-box-content">
-                                        <div class="information-header d-flex justify-content-between align-items-center">
-                                            <div class="title">Interests</div>
-    
-                                            <div class="dropdown">
-                                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-menu"></i></button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-edit"></i> Edit Information</a></li>
-                                                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-private"></i> Hide Information</a></li>
-                                                    <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="flaticon-trash"></i> Delete Information</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="box-content">
-                                            <p class="designation">Hobbies:</p>
-                                            <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
-
-                                        <div class="box-content">
-                                            <p class="designation">Favourite Books:</p>
-                                            <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
-
-                                        <div class="box-content">
-                                            <p class="designation">Others Interests:</p>
-                                            <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla porttitor accumsan tincidunt. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec rutrum congue leo eget malesuada. Quisque velit nisi pretium ut lacinia in elementum id enim. Vivamus magna justo lacinia eget consectetur sed convallis at tellus.</p>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>  
                         </div>
