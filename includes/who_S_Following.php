@@ -2,9 +2,9 @@
 if ($id==false) {
     header("location:login.php");
 }
-$reqFollow1 = $conn->query('SELECT * FROM users WHERE NOT id_users='.$_SESSION['id_session']);
+$reqFollow1 = $conn->query('SELECT * FROM users WHERE NOT id_user='.$_SESSION['id_session']);
 
-/*$reqFollow2 = $conn->prepare('SELECT * FROM users inner join follow on id_users=id_follower where id_follower= ? and id_following = ?');
+/*$reqFollow2 = $conn->prepare('SELECT * FROM users inner join follow on id_user=id_follower where id_follower= ? and id_following = ?');
 */
 ?>
 
@@ -16,8 +16,8 @@ $reqFollow1 = $conn->query('SELECT * FROM users WHERE NOT id_users='.$_SESSION['
                                     ?>
                                 <div class="following-item d-flex justify-content-between align-items-center">
                                     <a href="#"><img src="assets/images/user/user-42.jpg" class="rounded-circle" alt="image"></a>
-                                    <span class="name"><a href="#"><?php echo $donner1['nom_users']." ".$donner1['prenom_users'];?></a></span>
-                                    <span class="add-friend"><a href="./action/follow.php?followedid=<?php echo $donner1['id_users']?>">Add</a></span>
+                                    <span class="name"><a href="#"><?php echo $donner1['nom_user']." ".$donner1['prenom_user'];?></a></span>
+                                    <span class="add-friend"><a href="./action/follow.php?followedid=<?php echo $donner1['id_user']?>">Add</a></span>
                                 </div>
                                 <?php }?>
                                 

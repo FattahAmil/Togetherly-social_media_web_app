@@ -49,7 +49,9 @@ Default CSS
   --font-size: 16px;
   --transition: .4s;
 }
-
+#photo-input, #video-input {
+  display: none;
+}
 body {
   padding: 0;
   margin: 0;

@@ -1,9 +1,9 @@
 <?php
 
 try{
-    $conn = new PDO('mysql:host=localhost;dbname=forums;', 'root', '');
+    $conn = new PDO('mysql:host=localhost;dbname=forum;', 'root', '');
 }catch(Exception $e){
-    die('Ereur : '.$e->getMesage());
+    die('Ereur : '.$e->getMessage());
 }
 
 ?>

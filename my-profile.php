@@ -176,8 +176,8 @@ if ($id==false) {
                                 </div>
                             </div>
                             <div class="info-text ms-3">
-                                <h3><a href="#"><?php echo $donner['nom_users']." ".$donner['prenom_users'];?></a></h3>
-                                <span><a href="mailto:<?php echo $donner['email_users'];?>"><?php echo $donner['email_users'];?></a></span>
+                                <h3><a href="#"><?php echo $donner['nom_user']." ".$donner['prenom_user'];?></a></h3>
+                                <span><a href="mailto:<?php echo $donner['email_user'];?>"><?php echo $donner['email_user'];?></a></span>
                             </div>
                             <ul class="statistics">
                                 <li>
@@ -1021,16 +1021,16 @@ if ($id==false) {
 
                                     <ul class="information-list">
                                         <li>
-                                            <span>Email:</span> <a href="mailto:<?php echo $donner['email_users'];?>"><?php echo $donner['email_users'];?></a>
+                                            <span>Email:</span> <a href="mailto:<?php echo $donner['email_user'];?>"><?php echo $donner['email_user'];?></a>
                                         </li>
                                         <li>
                                             <span>Occupation:</span> UX Designer
                                         </li>
                                         <li>
-                                            <span>Phone:</span> <a href="tel:<?php echo $donner['phone_users'];?>"><?php echo $donner['phone_users'];?></a>
+                                            <span>Phone:</span> <a href="tel:<?php echo $donner['phone_user'];?>"><?php echo $donner['phone_user'];?></a>
                                         </li>
                                         <li>
-                                            <span>Gender:</span> <?php echo $donner['gender_users'];?>
+                                            <span>Gender:</span> <?php echo $donner['gender_user'];?>
                                         </li>
                                     </ul>
                                 </div>

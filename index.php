@@ -5,11 +5,6 @@ $id=$_SESSION['id_session'];
 if ($id==false) {
     header("location:login.php");
 }
-
-
-
-
-
 ?>
 
 
@@ -147,7 +142,7 @@ if ($id==false) {
                                 <div class="profile-box d-flex justify-content-between align-items-center">
                                     <a href="my-profile.html"><img src="assets/images/user/user-1.jpg" alt="image"></a>
                                     <div class="text ms-2">
-                                        <h3><a href="my-profile.html"><?php echo $donner['nom_users']." ".$donner['prenom_users']; ?></a></h3>
+                                        <h3><a href="my-profile.html"><?php echo $donner['nom_user']." ".$donner['prenom_user']; ?></a></h3>
                                         <span>Washington</span>
                                     </div>
                                 </div>
@@ -304,32 +299,10 @@ if ($id==false) {
                     
                     <div class="col-lg-6 col-md-12">
                         <div class="news-feed-area">
-                            <div class="news-feed news-feed-form">
-                                <h3 class="news-feed-title">Create New Post</h3>
-
-                                <form>
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" placeholder="Write something here..."></textarea>
-                                    </div>
-                                    <ul class="button-group d-flex justify-content-between align-items-center">
-                                        <li class="photo-btn">
-                                            <button type="submit"><i class="flaticon-gallery"></i> Photo</button>
-                                        </li>
-                                        <li class="video-btn">
-                                            <button type="submit"><i class="flaticon-video"></i> Video</button>
-                                        </li>
-                                        <li class="tag-btn">
-                                            <button type="submit"><i class="flaticon-tag"></i> Tag Friends</button>
-                                        </li>
-                                        <li class="post-btn">
-                                            <button type="submit">Post</button>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
-
-                            
-                                
+                            <?php
+                            include_once"includes\createpost.php";
+                            ?>
+                        
                             <div class="news-feed news-feed-post">
                                 <div class="post-header d-flex justify-content-between align-items-center">
                                     <div class="image">
