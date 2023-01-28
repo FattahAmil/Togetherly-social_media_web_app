@@ -145,9 +145,9 @@ if ($id==false) {
                         <aside class="widget-area">
                             <div class="widget widget-view-profile">
                                 <div class="profile-box d-flex justify-content-between align-items-center">
-                                    <a href="my-profile.html"><img src="assets/images/user/user-1.jpg" alt="image"></a>
+                                    <a href="my-profile.php"><img src="assets/images/user/user-1.jpg" alt="image"></a>
                                     <div class="text ms-2">
-                                        <h3><a href="my-profile.html"><?php echo $donner['nom_users']." ".$donner['prenom_users']; ?></a></h3>
+                                        <h3><a href="my-profile.php"><?php echo $donner['nom_users']." ".$donner['prenom_users']; ?></a></h3>
                                         <span>Washington</span>
                                     </div>
                                 </div>
@@ -313,7 +313,9 @@ if ($id==false) {
                                     </div>
                                     <ul class="button-group d-flex justify-content-between align-items-center">
                                         <li class="photo-btn">
-                                            <button type="submit"><i class="flaticon-gallery"></i> Photo</button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="flaticon-photos"></i>
+  photo
+</button>
                                         </li>
                                         <li class="video-btn">
                                             <button type="submit"><i class="flaticon-video"></i> Video</button>
@@ -896,7 +898,23 @@ if ($id==false) {
             <i class="ri-arrow-up-line"></i>
         </div>
         <!-- End Go Top Area -->
-        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- Links of JS files -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>
