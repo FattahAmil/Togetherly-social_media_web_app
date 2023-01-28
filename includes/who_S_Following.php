@@ -3,7 +3,7 @@ if ($id==false) {
     header("location:login.php");
 }
 
-$reqFollow1 = $conn->query('SELECT * FROM users inner join follow on id_users=id_following WHERE NOT id_follower='.$_SESSION['id_session'].' AND NOT id_users='.$_SESSION['id_session']);
+$reqFollow1 = $conn->query('SELECT * FROM users inner join follow on id_user=id_following WHERE NOT id_follower='.$_SESSION['id_session'].' AND NOT id_user='.$_SESSION['id_session']);
 
 /*
 $reqFollow1->execute(array($_SESSION['id_session'],$donner1['id_users']));

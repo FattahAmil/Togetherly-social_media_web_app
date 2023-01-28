@@ -142,7 +142,7 @@ if ($id==false) {
                                 <div class="profile-box d-flex justify-content-between align-items-center">
                                     <a href="my-profile.php"><img src="assets/images/user/user-1.jpg" alt="image"></a>
                                     <div class="text ms-2">
-                                        <h3><a href="my-profile.php"><?php echo $donner['nom_users']." ".$donner['prenom_users']; ?></a></h3>
+                                        <h3><a href="my-profile.php"><?php echo $donner['nom_user']." ".$donner['prenom_user']; ?></a></h3>
                                         <span>Washington</span>
                                     </div>
                                 </div>
@@ -901,7 +901,7 @@ if ($id==false) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+    
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
