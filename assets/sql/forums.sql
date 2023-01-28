@@ -46,7 +46,7 @@ INSERT INTO `follow` (`id`, `id_follower`, `id_following`) VALUES
 -- Structure de la table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `nom_user` varchar(60) NOT NULL,
   `prenom_user` varchar(60) NOT NULL,
@@ -82,7 +82,7 @@ ALTER TABLE `follow`
 --
 -- Index pour la table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -98,7 +98,7 @@ ALTER TABLE `follow`
 --
 -- AUTO_INCREMENT pour la table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
