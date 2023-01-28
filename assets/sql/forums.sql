@@ -46,25 +46,25 @@ INSERT INTO `follow` (`id`, `id_follower`, `id_following`) VALUES
 -- Structure de la table `users`
 --
 
-CREATE TABLE `users` (
-  `id_users` int(11) NOT NULL,
-  `nom_users` varchar(60) NOT NULL,
-  `prenom_users` varchar(60) NOT NULL,
-  `email_users` varchar(150) NOT NULL,
-  `pass_users` varchar(20) NOT NULL,
-  `admin_users` int(11) NOT NULL,
-  `imgprfl_users` varchar(200) NOT NULL,
-  `phone_users` varchar(20) DEFAULT NULL,
-  `gender_users` varchar(20) DEFAULT 'Unknown'
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `nom_user` varchar(60) NOT NULL,
+  `prenom_user` varchar(60) NOT NULL,
+  `email_user` varchar(150) NOT NULL,
+  `pass_user` varchar(20) NOT NULL,
+  `admin_user` int(11) NOT NULL,
+  `imgprfl_user` varchar(200) NOT NULL,
+  `phone_user` varchar(20) DEFAULT NULL,
+  `gender_user` varchar(20) DEFAULT 'Unknown'
 ) ;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_users`, `nom_users`, `prenom_users`, `email_users`, `pass_users`, `admin_users`, `imgprfl_users`, `phone_users`, `gender_users`) VALUES
+INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `email_user`, `pass_user`, `admin_user`, `imgprfl_user`, `phone_user`, `gender_user`) VALUES
 (1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, '', NULL, 'Unknown'),
-(2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234', 0, '', NULL, 'Unknown'),
+(2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234',  0, '', NULL, 'Unknown'),
 (3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, '', NULL, 'Unknown');
 
 --
@@ -82,8 +82,8 @@ ALTER TABLE `follow`
 --
 -- Index pour la table `users`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_users`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -98,8 +98,8 @@ ALTER TABLE `follow`
 --
 -- AUTO_INCREMENT pour la table `users`
 --
-ALTER TABLE `users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
@@ -109,8 +109,8 @@ ALTER TABLE `users`
 -- Contraintes pour la table `follow`
 --
 ALTER TABLE `follow`
-  ADD CONSTRAINT `Fk_idfollow` FOREIGN KEY (`id_follower`) REFERENCES `users` (`id_users`),
-  ADD CONSTRAINT `fk_following` FOREIGN KEY (`id_following`) REFERENCES `users` (`id_users`);
+  ADD CONSTRAINT `Fk_idfollow` FOREIGN KEY (`id_follower`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `fk_following` FOREIGN KEY (`id_following`) REFERENCES `users` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

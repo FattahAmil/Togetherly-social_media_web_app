@@ -5,11 +5,6 @@ $id=$_SESSION['id_session'];
 if ($id==false) {
     header("location:login.php");
 }
-
-
-
-
-
 ?>
 
 

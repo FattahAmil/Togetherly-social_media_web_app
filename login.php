@@ -5,11 +5,11 @@ if (isset($_POST['submit'])) {
 if(!empty($_POST['email']) && !empty($_POST['password'])) {
     $email=$_POST['email'];
     $pass=$_POST['password'];
-$req = $conn->prepare('SELECT * FROM users WHERE email_users = ? AND pass_users = ? ');
+$req = $conn->prepare('SELECT * FROM users WHERE email_user = ? AND pass_user = ? ');
 $req->execute(array($email,$pass));
 $controle=$req->fetch();
 if ($controle) {
-    $id=$controle['id_users'];
+    $id=$controle['id_user'];
   $_SESSION['id_session']=$id;
   header("location:index.php");
   exit;
@@ -21,7 +21,7 @@ if ($controle) {
     padding: 9px;
     margin: 5px;">
     
-    <strong>Warning!</strong> your mdp and your email is incorrect.
+    <strong>Warning!</strong> your password or your email is incorrect.
   </div>';
 }
 ?>
