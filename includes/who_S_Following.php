@@ -2,17 +2,24 @@
 if ($id==false) {
     header("location:login.php");
 }
-$reqFollow1 = $conn->query('SELECT * FROM users WHERE NOT id_user='.$_SESSION['id_session']);
 
-/*$reqFollow2 = $conn->prepare('SELECT * FROM users inner join follow on id_user=id_follower where id_follower= ? and id_following = ?');
-*/
+$reqFollow1 = $conn->query('SELECT * FROM users inner join follow on id_user=id_following WHERE NOT id_follower='.$_SESSION['id_session'].' AND NOT id_user='.$_SESSION['id_session']);
+
+/*
+$reqFollow1->execute(array($_SESSION['id_session'],$donner1['id_users']));
+$reqFollow1=$reqFollow1->rowCount();
+$reqFollow2 = $conn->prepare('SELECT * FROM users inner join follow on id_users=id_follower where id_follower= ? and id_following = ?');*/
+
 ?>
 
 
 <div class="widget widget-who-following">
                                 <h3 class="widget-title">Who's Following</h3>
-                                <?php while ($donner1 =$reqFollow1->fetch()) {
-                                    # code...
+                                <?php
+                               
+                                
+                                 while ($donner1 =$reqFollow1->fetch()) {
+                                    
                                     ?>
                                 <div class="following-item d-flex justify-content-between align-items-center">
                                     <a href="#"><img src="assets/images/user/user-42.jpg" class="rounded-circle" alt="image"></a>
