@@ -87,7 +87,7 @@ if ($controle) {
                         <div class="login-form">
                             <h2>Login</h2>
         
-                            <form  method="POST" action="#" >
+                            <form  method="POST" action="action/login.php" >
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="email" name="email" class="form-control">

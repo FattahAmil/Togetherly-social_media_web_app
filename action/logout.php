@@ -6,7 +6,7 @@ session_start(); // start the session
 // check if user is logged in
 if (!isset($_SESSION['id_session'])) {
     // redirect to login page or home page
-    header('Location: ../login.php');
+    header('Location: ../login-page.php');
     exit;
 }
 
@@ -17,7 +17,7 @@ $_SESSION = array();
 session_destroy();
 
 // redirect to login page or home page
-header('Location: ../login.php');
+header('Location: ../login-page.php');
 exit;
 
 ?>

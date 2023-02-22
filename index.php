@@ -3,7 +3,7 @@ session_start();
 require('connection.php');
 $id=$_SESSION['id_session'];
 if ($id==false) {
-    header("location:login.php");
+    header("location:login-page.php");
 }
 ?>
 
