@@ -6,7 +6,10 @@ if ($id==false) {
     header("location:login.php");
 }
 
-
+$req=$conn->prepare("SELECT * FROM follow where id_follower=".$_SESSION['id_session']);
+$req->execute();
+$req1=$conn->prepare("SELECT * FROM follow where id_following=".$_SESSION['id_session']);
+$req1->execute();
 
 ?>
 <!doctype html>
@@ -188,13 +191,13 @@ if ($id==false) {
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="item-number">8591</span> 
+                                        <span class="item-number"><?php echo $req->rowCount(); ?></span> 
                                         <span class="item-text">Following</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="item-number">784514</span> 
+                                        <span class="item-number"><?php echo $req1->rowCount(); ?></span> 
                                         <span class="item-text">Followers</span>
                                     </a>
                                 </li>
