@@ -3,7 +3,7 @@ session_start();
 require('connection.php');
 $id=$_SESSION['id_session'];
 if ($id==false) {
-    header("location:login.php");
+    header("location:login-page.php");
 }
 ?>
 
@@ -16,7 +16,7 @@ if ($id==false) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
@@ -54,7 +54,7 @@ if ($id==false) {
         <div class="main-content-wrapper d-flex flex-column">
 
             <!-- Start Navbar Area -->
-            <?php include_once"./header_Navbar.php"; ?>
+            <?php include_once"includes/header_Navbar.php"; ?>
             <!-- End Navbar Area -->
             
             <!-- Start Sidemenu Area -->
@@ -138,62 +138,9 @@ if ($id==false) {
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
                         <aside class="widget-area">
-                            <div class="widget widget-view-profile">
-                                <div class="profile-box d-flex justify-content-between align-items-center">
-                                    <a href="my-profile.php"><img src="assets/images/user/user-1.jpg" alt="image"></a>
-                                    <div class="text ms-2">
-                                        <h3><a href="my-profile.php"><?php echo $donner['nom_user']." ".$donner['prenom_user']; ?></a></h3>
-                                        <span>Washington</span>
-                                    </div>
-                                </div>
-                                <ul class="profile-statistics">
-                                    <li>
-                                        <a href="#">
-                                            <span class="item-number">59862</span> 
-                                            <span class="item-text">Likes</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="item-number">8591</span> 
-                                            <span class="item-text">Following</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="item-number">784514</span> 
-                                            <span class="item-text">Followers</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="profile-likes">
-                                    <span><i class="flaticon-heart-shape-outline"></i> New Likes This Week</span>
-
-                                    <ul>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-22.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-23.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-24.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-25.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-26.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-27.jpg" alt="image"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="profile-btn">
-                                    <a href="my-profile.php" class="default-btn">View Profile</a>
-                                </div>
-                            </div>
+                            <!-- Start view-profile -->
+                            <?php include_once"includes/view-profile.php";  ?>
+                            <!-- end view-profile -->
                             <div class="widget widget-watch-video">
                                 <h3 class="widget-title">Watch Video</h3>
                         
@@ -744,7 +691,7 @@ if ($id==false) {
                                 </article>
                             </div>
                             <!-- whos following  -->
-                            <?php include_once"./includes/who_S_Following.php"; ?>
+                            <?php include_once"includes/who_S_Following.php"; ?>
                             <!-- end whos following  -->
                         </aside>
                     </div>
@@ -915,6 +862,7 @@ if ($id==false) {
   </div>
 </div>
         <!-- Links of JS files -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/jquery.magnific-popup.min.js"></script>

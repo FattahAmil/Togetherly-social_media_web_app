@@ -19,7 +19,8 @@ if ($controle) {
     border-radius: 5px;
     width: 75%;
     padding: 9px;
-    margin: 5px;">
+    margin: 5px;
+    ">
     
     <strong>Warning!</strong> your password or your email is incorrect.
   </div>';
@@ -86,7 +87,7 @@ if ($controle) {
                         <div class="login-form">
                             <h2>Login</h2>
         
-                            <form  method="POST" action="#" >
+                            <form  method="POST" action="action/login.php" >
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="email" name="email" class="form-control">

@@ -51,6 +51,7 @@ Default CSS
 }
 #photo-input, #video-input {
   display: none;
+z-index: 1000;
 }
 body {
   padding: 0;

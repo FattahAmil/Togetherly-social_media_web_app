@@ -15,6 +15,12 @@ if ($getFollowedId != $_SESSION['id_session']) {
         $deletFollow->execute(array($_SESSION['id_session'],$getFollowedId));
     }
     
+
+    $req100 = $conn->prepare("SELECT * FROM follow WHERE id_follower = ?");
+    $req100->execute(array($_SESSION['id_session']));
+    echo $req100->rowCount();
+    
 }
-header('location:'.$_SERVER['HTTP_REFERER']);
+
+
 ?>
