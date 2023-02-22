@@ -300,29 +300,33 @@ if ($id==false) {
                     <div class="col-lg-6 col-md-12">
                         <div class="news-feed-area">
                             <div class="news-feed news-feed-form">
-                                <h3 class="news-feed-title">Create New Post</h3>
-
-                                <form>
+                                 <h3 class="news-feed-title">Create New Post</h3>
+                                    <form method="post" enctype="multipart/form-data"  action="includes/createpost.php"  >
                                     <div class="form-group">
                                         <textarea name="message" class="form-control" placeholder="Write something here..."></textarea>
                                     </div>
                                     <ul class="button-group d-flex justify-content-between align-items-center">
                                         <li class="photo-btn">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="flaticon-photos"></i>
-  photo
-</button>
+                                        <label for="photo_upload"><i class="flaticon-photo"></i>Upload photo </label>
+                                        <input type="file" name="photo" id="photo_upload" style="display:none;">
                                         </li>
                                         <li class="video-btn">
-                                            <button type="submit"><i class="flaticon-video"></i> Video</button>
+                                        <label for="video_upload"><i class="flaticon-video"></i> Upload video</label>
+                                        <input type="file" name="video" id="video_upload" style="display:none;">
                                         </li>
                                         <li class="tag-btn">
-                                            <button type="submit"><i class="flaticon-tag"></i> Tag Friends</button>
+                                        <input type="text" name="tagged_friends" placeholder="Tag friends">
                                         </li>
                                         <li class="post-btn">
-                                            <button type="submit">Post</button>
+                                        <button type="submit">Post</button>
                                         </li>
                                     </ul>
-                                </form>
+                                    </form>
+
+
+
+
+
                             </div>
 
                             
