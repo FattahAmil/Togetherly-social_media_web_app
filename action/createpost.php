@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare("INSERT INTO posts (id_user, content, media, post_date) VALUES (?, ?, ?, NOW())");
         $stmt->execute([$id_user, $message, $media]);
 
-        echo "Post created successfully";
+        header('Location: ../index.php');
 
     } else {
         echo "Please enter a message";

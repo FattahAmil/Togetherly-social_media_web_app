@@ -43,7 +43,7 @@ CREATE TABLE `posts` (
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `content` text NOT NULL,
-  `media` varchar(255) NOT NULL,
+  `media` varchar(255) ,
   `post_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
