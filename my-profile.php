@@ -53,7 +53,7 @@ if ($id==false) {
         <div class="main-content-wrapper d-flex flex-column">
 
             <!-- Start Navbar Area -->
-            <?php include_once"./header_Navbar.php"; ?>
+            <?php include_once"includes/header_Navbar.php"; ?>
             <!-- End Navbar Area -->
             
             <!-- Start Sidemenu Area -->
@@ -256,48 +256,7 @@ if ($id==false) {
                         <div class="row">
                             <div class="col-lg-3 col-md-12">
                                 <aside class="widget-area">
-                                    <div class="widget widget-suggested-groups">
-                                        <h3 class="widget-title">Suggested Groups</h3>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg1" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">UX/UI Design Group</a>
-                                                </h4>
-                                                <span>5000+ Members</span>
-                                                <a href="#" class="join-btn">Join Community</a>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg2" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Job Search Group</a>
-                                                </h4>
-                                                <span>5000+ Members</span>
-                                                <a href="#" class="join-btn">Join Community</a>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg3" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Photography Group</a>
-                                                </h4>
-                                                <span>5000+ Members</span>
-                                                <a href="#" class="join-btn">Join Community</a>
-                                            </div>
-                                        </article>
-                                    </div>
+                                    
                                     <div class="widget widget-advertisement">
                                         <h3 class="widget-title">Advertisement</h3>
         
@@ -305,70 +264,7 @@ if ($id==false) {
                                             <a href="#"><img src="assets/images/advertisement.jpg" alt="image"></a>
                                         </div>
                                     </div>
-                                    <div class="widget widget-page-you-like">
-                                        <h3 class="widget-title">Page You Like</h3>
-        
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg1" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Graphic Design</a>
-                                                </h4>
-                                                <span>1215 Members</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg2" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Digital Marketing</a>
-                                                </h4>
-                                                <span>1865 Members</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg3" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Fitness Club</a>
-                                                </h4>
-                                                <span>2051 Members</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg4" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Dream Restaurant</a>
-                                                </h4>
-                                                <span>5214 Members</span>
-                                            </div>
-                                        </article>
-                                        <article class="item">
-                                            <a href="#" class="thumb">
-                                                <span class="fullimage bg5" role="img"></span>
-                                            </a>
-            
-                                            <div class="info">
-                                                <h4 class="title">
-                                                    <a href="#">Travel Life</a>
-                                                </h4>
-                                                <span>9589 Members</span>
-                                            </div>
-                                        </article>
-                                    </div>
+                                    
                                     <div class="widget widget-watch-video">
                                         <h3 class="widget-title">Watch Video</h3>
                                 
@@ -425,68 +321,7 @@ if ($id==false) {
                                         </form>
                                     </div>
         
-                                    <div class="news-feed news-feed-stories">
-                                        <div class="stories-title d-flex justify-content-between align-items-center">
-                                            <h3>Stories</h3>
-                                            <span><a href="#">See All</a></span>
-                                        </div>
-        
-                                        <div class="row">
-                                            <div class="col-lg-2 col-sm-4 col-4">
-                                                <div class="stories-item">
-                                                    <div class="stories-image">
-                                                        <a href="#">
-                                                            <img src="assets/images/user/user-1.jpg" alt="image">
-                                                        </a>
-                                                        <div class="add-icon">
-                                                            <a href="#"><i class="flaticon-add"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <span><a href="#">Add Story</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-4 col-4">
-                                                <div class="stories-item">
-                                                    <a href="#">
-                                                        <img src="assets/images/user/user-28.jpg" alt="image">
-                                                    </a>
-                                                    <span><a href="#">Jimenez</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-4 col-4">
-                                                <div class="stories-item">
-                                                    <a href="#">
-                                                        <img src="assets/images/user/user-29.jpg" alt="image">
-                                                    </a>
-                                                    <span><a href="#">Lolita</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-4 col-4">
-                                                <div class="stories-item">
-                                                    <a href="#">
-                                                        <img src="assets/images/user/user-13.jpg" alt="image">
-                                                    </a>
-                                                    <span><a href="#">Matthew</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-4 col-4">
-                                                <div class="stories-item">
-                                                    <a href="#">
-                                                        <img src="assets/images/user/user-30.jpg" alt="image">
-                                                    </a>
-                                                    <span><a href="#">Russell</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 col-sm-4 col-4">
-                                                <div class="stories-item">
-                                                    <a href="#">
-                                                        <img src="assets/images/user/user-31.jpg" alt="image">
-                                                    </a>
-                                                    <span><a href="#">Katzman</a></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                         
                                     <div class="news-feed news-feed-post">
                                         <div class="post-header d-flex justify-content-between align-items-center">
@@ -968,35 +803,7 @@ if ($id==false) {
                                             <a href="#"><img src="assets/images/explore-events/explore-2.jpg" alt="image"></a>
                                         </article>
                                     </div>
-                                    <div class="widget widget-who-following">
-                                        <h3 class="widget-title">Who's Following</h3>
-                                        
-                                        <div class="following-item d-flex justify-content-between align-items-center">
-                                            <a href="#"><img src="assets/images/user/user-42.jpg" class="rounded-circle" alt="image"></a>
-                                            <span class="name"><a href="#">Shawn Lynch</a></span>
-                                            <span class="add-friend"><a href="#">Add</a></span>
-                                        </div>
-                                        <div class="following-item d-flex justify-content-between align-items-center">
-                                            <a href="#"><img src="assets/images/user/user-43.jpg" class="rounded-circle" alt="image"></a>
-                                            <span class="name"><a href="#">Kenneth Perry</a></span>
-                                            <span class="add-friend"><a href="#">Add</a></span>
-                                        </div>
-                                        <div class="following-item d-flex justify-content-between align-items-center">
-                                            <a href="#"><img src="assets/images/user/user-44.jpg" class="rounded-circle" alt="image"></a>
-                                            <span class="name"><a href="#">Janet Suarez</a></span>
-                                            <span class="add-friend"><a href="#">Add</a></span>
-                                        </div>
-                                        <div class="following-item d-flex justify-content-between align-items-center">
-                                            <a href="#"><img src="assets/images/user/user-45.jpg" class="rounded-circle" alt="image"></a>
-                                            <span class="name"><a href="#">Brian Mingo</a></span>
-                                            <span class="add-friend"><a href="#">Add</a></span>
-                                        </div>
-                                        <div class="following-item d-flex justify-content-between align-items-center">
-                                            <a href="#"><img src="assets/images/user/user-46.jpg" class="rounded-circle" alt="image"></a>
-                                            <span class="name"><a href="#">Julia Ramos</a></span>
-                                            <span class="add-friend"><a href="#">Add</a></span>
-                                        </div>
-                                    </div>
+                                    <?php include_once"includes/who_S_Following.php"; ?>
                                 </aside>
                             </div>
                         </div>

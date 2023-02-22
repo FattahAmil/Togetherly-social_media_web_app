@@ -19,7 +19,8 @@ if ($controle) {
     border-radius: 5px;
     width: 75%;
     padding: 9px;
-    margin: 5px;">
+    margin: 5px;
+    ">
     
     <strong>Warning!</strong> your password or your email is incorrect.
   </div>';

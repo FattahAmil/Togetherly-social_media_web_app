@@ -16,7 +16,7 @@ if ($id==false) {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
@@ -54,7 +54,7 @@ if ($id==false) {
         <div class="main-content-wrapper d-flex flex-column">
 
             <!-- Start Navbar Area -->
-            <?php include_once"./header_Navbar.php"; ?>
+            <?php include_once"includes/header_Navbar.php"; ?>
             <!-- End Navbar Area -->
             
             <!-- Start Sidemenu Area -->
@@ -740,7 +740,7 @@ if ($id==false) {
                                 </article>
                             </div>
                             <!-- whos following  -->
-                            <?php include_once"./includes/who_S_Following.php"; ?>
+                            <?php include_once"includes/who_S_Following.php"; ?>
                             <!-- end whos following  -->
                         </aside>
                     </div>
@@ -911,6 +911,7 @@ if ($id==false) {
   </div>
 </div>
         <!-- Links of JS files -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/jquery.magnific-popup.min.js"></script>

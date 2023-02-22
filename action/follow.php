@@ -16,5 +16,5 @@ if ($getFollowedId != $_SESSION['id_session']) {
     }
     
 }
-header('location:'.$_SERVER['HTTP_REFERER']);
+
 ?>

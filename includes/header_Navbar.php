@@ -421,7 +421,7 @@ $donner =$req1->fetch();
                                                 <li><i class="flaticon-settings"></i> <a href="setting.php">Setting</a></li>
                                                 <li><i class="flaticon-privacy"></i> <a href="privacy.php">Privacy</a></li>
                                                 <li><i class="flaticon-information"></i> <a href="help-and-support.php">Help & Support</a></li>
-                                                <li><i class="flaticon-logout"></i> <a href="index.php">Logout</a></li>
+                                                <li><i class="flaticon-logout"></i> <a href="action/logout.php">Logout</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -696,7 +696,7 @@ $donner =$req1->fetch();
                                                     <li><i class="flaticon-settings"></i> <a href="setting.php">Setting</a></li>
                                                     <li><i class="flaticon-privacy"></i> <a href="privacy.php">Privacy</a></li>
                                                     <li><i class="flaticon-information"></i> <a href="help-and-support.php">Help & Support</a></li>
-                                                    <li><i class="flaticon-logout"></i> <a href="index.php">Logout</a></li>
+                                                    <li><i class="flaticon-logout"></i> <a href="action/logout.php">Logout</a></li>
                                                 </ul>
                                             </div>
                                         </div>
