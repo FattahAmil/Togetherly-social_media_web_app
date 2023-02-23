@@ -1,6 +1,6 @@
 <div class="news-feed news-feed-form">
                                  <h3 class="news-feed-title">Create New Post</h3>
-                                    <form method="post" enctype="multipart/form-data"  action="../action/createpost.php"  >
+                                    <form method="post" enctype="multipart/form-data"  action="./action/createpost.php"  >
                                     <div class="form-group">
                                         <textarea name="message" class="form-control" placeholder="Write something here..."></textarea>
                                     </div>
@@ -13,17 +13,9 @@
                                         <label for="video_upload"><i class="flaticon-video"></i> Upload video</label>
                                         <input type="file" name="video" id="video_upload" style="display:none;">
                                         </li>
-                                        <li class="tag-btn">
-                                        <input type="text" name="tagged_friends" placeholder="Tag friends">
-                                        </li>
                                         <li class="post-btn">
                                         <button type="submit">Post</button>
                                         </li>
                                     </ul>
                                     </form>
-
-
-
-
-
                             </div>

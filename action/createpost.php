@@ -1,8 +1,9 @@
 <?php
 session_start();
+require_once('../connection.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST['message'])) {
-        require_once('../connection.php');
+        
         $message = $_POST['message'];
         $tagged_friends = !empty($_POST['tagged_friends']) ? $_POST['tagged_friends'] : null;
         $media = null;
