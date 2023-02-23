@@ -167,8 +167,7 @@ if ($id==false) {
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>     
                             <div class="widget widget-advertisement">
                                 <h3 class="widget-title">Advertisement</h3>
 
@@ -185,9 +184,6 @@ if ($id==false) {
                             
                         <!--  start create post   -->
                             <?php include_once'includes/create_post_page.php';   ?>                            
-                        <!--  start create post   -->
-                         <!--  start create post   -->
-                            <?php include_once'includes/showpost.php';   ?>                            
                         <!--  start create post   -->
                                 
                             <div class="news-feed news-feed-post">
