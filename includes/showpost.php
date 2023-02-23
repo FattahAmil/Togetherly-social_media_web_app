@@ -23,7 +23,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <div class='post-header d-flex justify-content-between align-items-center'>
   <div class='image'>
  <?php if (!empty($profile_image)) { ?>
-    <a href='my-profile.html'><img src='<?php echo $profile_image ?>' class='rounded-circle' alt='Profile Image'></a>
+    <a href='my-profile.html'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' width="60"></a>
  <?php } ?>
  </div>
   <div class='info ms-3'>
@@ -45,7 +45,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <?php if (!empty($media)) {
                                     if (pathinfo($media, PATHINFO_EXTENSION) === 'mp4') { ?>
                                     
-                                       <video controls><source src='./action/uploads/<?php echo $media ;?>' type='video/mp4'></video>
+                                       <video style="max-width: 100%;height: auto;display: inline-block;" controls><source src='./action/uploads/<?php echo $media ;?>' type='video/mp4'></video>
                                  <?php  } else { ?>
                                        <img src='./action/uploads/<?php echo $media ;?>'>
                                     <?php }

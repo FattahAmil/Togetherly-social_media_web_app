@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 22 fév. 2023 à 23:06
+-- Généré le : jeu. 23 fév. 2023 à 22:30
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -33,6 +33,16 @@ CREATE TABLE `follow` (
   `id_following` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `follow`
+--
+
+INSERT INTO `follow` (`id`, `id_follower`, `id_following`) VALUES
+(61, 1, 2),
+(62, 1, 3),
+(63, 2, 1),
+(64, 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -43,7 +53,7 @@ CREATE TABLE `posts` (
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `content` text NOT NULL,
-  `media` varchar(255) ,
+  `media` varchar(255) DEFAULT NULL,
   `post_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -55,7 +65,9 @@ INSERT INTO `posts` (`id_post`, `id_user`, `content`, `media`, `post_date`) VALU
 (17, 2, 'hhhhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:26:37'),
 (18, 2, 'gggggggggggg', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:28:08'),
 (19, 2, 'gggggggggggg', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:29:41'),
-(20, 2, 'hhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:44:18');
+(20, 2, 'hhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:44:18'),
+(21, 2, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', NULL, '2023-02-22 23:57:19'),
+(22, 1, 'jjjjjjj', 'MTA_ San Andreas 2022-10-10 01-41-21.mp4', '2023-02-23 20:56:53');
 
 -- --------------------------------------------------------
 
@@ -70,19 +82,19 @@ CREATE TABLE `users` (
   `email_user` varchar(150) NOT NULL,
   `pass_user` varchar(20) NOT NULL,
   `admin_user` int(11) NOT NULL,
-  `imgprfl_user` varchar(200) NOT NULL,
+  `imgprfl_user` varchar(200) NOT NULL DEFAULT 'assets/images/user/user-32.jpg',
   `phone_user` varchar(20) DEFAULT NULL,
   `gender_user` varchar(20) DEFAULT 'Unknown'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `email_user`, `pass_user`, `admin_user`, `imgprfl_user`, `phone_user`, `gender_user`) VALUES
-(1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, '', NULL, 'Unknown'),
-(2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234', 0, '', NULL, 'Unknown'),
-(3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, '', NULL, 'Unknown');
+(1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, 'assets/images/user/user-32.jpg', NULL, 'Unknown'),
+(2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234', 0, './imgprofile/avatar.svg', NULL, 'Unknown'),
+(3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, 'assets/images/user/user-32.jpg', NULL, 'Unknown');
 
 --
 -- Index pour les tables déchargées
@@ -117,19 +129,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
