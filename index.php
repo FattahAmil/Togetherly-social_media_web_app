@@ -185,7 +185,10 @@ if ($id==false) {
                         <!--  start create post   -->
                             <?php include_once'includes/create_post_page.php';   ?>                            
                         <!--  start create post   -->
-                                
+                        
+                        <!--  start create post   -->
+                            <?php include_once'includes/showpost.php';   ?>                            
+                        <!--  start create post   -->
                             <div class="news-feed news-feed-post">
                                 <div class="post-header d-flex justify-content-between align-items-center">
                                     <div class="image">
