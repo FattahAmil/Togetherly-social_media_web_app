@@ -6,17 +6,13 @@ if ($id==false) {
     header("location:login-page.php");
 }
 ?>
-
-
-
-
 <!doctype html>
 <html lang="zxx">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
@@ -67,7 +63,7 @@ if ($id==false) {
 
                 <div class="sidemenu-body">
                     <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a href="index.html" class="nav-link">
                                 <span class="icon"><i class="flaticon-newspaper"></i></span>
                                 <span class="menu-title">News Feed</span>
@@ -103,7 +99,7 @@ if ($id==false) {
                                 <span class="menu-title">Favorite</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="events.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-calendar"></i></span>
                                 <span class="menu-title">Events</span>
@@ -116,9 +112,27 @@ if ($id==false) {
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="birthday.html" class="nav-link">
+                                <span class="icon"><i class="flaticon-cake"></i></span>
+                                <span class="menu-title">Birthday</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="video.html" class="nav-link">
                                 <span class="icon"><i class="flaticon-video"></i></span>
                                 <span class="menu-title">Video</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="weather.html" class="nav-link">
+                                <span class="icon"><i class="flaticon-cloudy"></i></span>
+                                <span class="menu-title">Weather</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="marketplace.html" class="nav-link">
+                                <span class="icon"><i class="flaticon-online-shopping"></i></span>
+                                <span class="menu-title">Marketplace</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -140,60 +154,241 @@ if ($id==false) {
             
             <!-- Start Content Page Box Area -->
             <div class="content-page-box-area">
-                <div class="row">
-                    <div class="col-lg-3 col-md-12">
-                        <aside class="widget-area">
-                            <!-- Start view-profile -->
-                            <?php include_once"includes/view-profile.php";  ?>
-                            <!-- end view-profile -->
-                            <!--  start whatch video -->
-                            <?php include_once"includes/watch-video.php"; ?>
-                            <!--  start whatch video -->     
-                            <div class="widget widget-advertisement">
-                                <h3 class="widget-title">Advertisement</h3>
+                <div class="page-banner-box bg-7">
+                    <h3>Events</h3>
+                </div>
 
-                                <div class="advertisement-image">
-                                    <a href="#"><img src="assets/images/advertisement.jpg" alt="image"></a>
-                                </div>
-                            </div>
-                           
-                        </aside>
+                <div class="events-inner-box-style d-flex justify-content-between align-items-center">
+                    <div class="title">
+                        <h3>All Events</h3>
                     </div>
-                    
-                    <div class="col-lg-6 col-md-12">
-                        <div class="news-feed-area">
-                            
-                        <!--  start create post   -->
-                            <?php include_once'includes/create_post_page.php';   ?>                            
-                        <!--  start create post   -->
-                        
-                        <!--  start create post   -->
-                            <?php include_once'includes/showpost.php';   ?>                            
-                        <!--  end create post   -->
-                           
-                        </div>
+                    <div class="events-btn">
+                        <a href="#" class="default-btn">Add New Event</a>
                     </div>
-
-                    <div class="col-lg-3 col-md-12">
-                        <aside class="widget-area">
-                            
-                            
-                            <div class="widget widget-explore-events">
-                                <h3 class="widget-title">Explore Events</h3>
-
-                                <article class="item">
-                                    <a href="#"><img src="assets/images/explore-events/explore-1.jpg" alt="image"></a>
-                                </article>
-                                <article class="item">
-                                    <a href="#"><img src="assets/images/explore-events/explore-2.jpg" alt="image"></a>
-                                </article>
-                            </div>
-                            <!-- whos following  -->
-                            <?php include_once"includes/who_S_Following.php"; ?>
-                            <!-- end whos following  -->
-                        </aside>
+                    <div class="events-search-box">
+                        <form>
+                            <input type="text" class="input-search" placeholder="Search events...">
+                            <button type="submit"><i class="ri-search-line"></i></button>
+                        </form>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-1.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>12:30PM to 02:30PM</span>
+                                <h3>
+                                    <a href="#">Digital Marketing</a>
+                                </h3>
+                                <p>Online</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>July 30, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-2.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>02:30PM to 04:30PM</span>
+                                <h3>
+                                    <a href="#">Dance Conference</a>
+                                </h3>
+                                <p>Online</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>August 06, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-3.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>12:30PM to 02:30PM</span>
+                                <h3>
+                                    <a href="#">Food Festival</a>
+                                </h3>
+                                <p>1157 Anmoore Road New York, NY</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>July 30, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-4.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>12:30PM to 02:30PM</span>
+                                <h3>
+                                    <a href="#">Film Festival</a>
+                                </h3>
+                                <p>2611 Deer Ridge Drive Newark, NJ</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>August 13, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-5.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>03:30PM to 05:30PM</span>
+                                <h3>
+                                    <a href="#">Language Festival</a>
+                                </h3>
+                                <p>Online</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>August 20, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-6.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>05:30PM to 07:30PM</span>
+                                <h3>
+                                    <a href="#">Business Conference</a>
+                                </h3>
+                                <p>1535 Point Street Chicago, IL</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>August 27, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-7.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>02:30PM to 04:30PM</span>
+                                <h3>
+                                    <a href="#">Shopping Conference</a>
+                                </h3>
+                                <p>Online</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>July 30, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-events-card">
+                            <a href="#">
+                                <img src="assets/images/events/events-8.jpg" alt="image">
+                            </a>
+                            <div class="events-content">
+                                <span>12:30PM to 02:30PM</span>
+                                <h3>
+                                    <a href="#">Music Party</a>
+                                </h3>
+                                <p>2428 Terra Street Seattle, WA</p>
+
+                                <div class="events-footer d-flex justify-content-between align-items-center">
+                                    <a href="#" class="default-btn">Attend</a>
+                                    <span>September 03, 2021</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="events-form">
+                    <h3>Add New Event</h3>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select class="form-select">
+                                    <option selected="1">Digital Marketing</option>
+                                    <option value="2">Dance Conference</option>
+                                    <option value="3">Food Festival</option>
+                                    <option value="4">Film Festival</option>
+                                    <option value="5">Language Festival</option>
+                                    <option value="6">Business Conference</option>
+                                    <option value="7">Shopping Conference</option>
+                                    <option value="8">Music Party</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Event Name</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Event Location</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Event Date</label>
+                                <input type="text" class="form-control" id="datepicker">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <input type="time" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>End Time</label>
+                                <input type="time" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Event Description</label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12">
+                            <button type="submit" class="default-btn">Created Event</button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- End Content Page Box Area -->
 
@@ -342,25 +537,8 @@ if ($id==false) {
             <i class="ri-arrow-up-line"></i>
         </div>
         <!-- End Go Top Area -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        
         <!-- Links of JS files -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/jquery.magnific-popup.min.js"></script>
