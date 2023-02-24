@@ -1,7 +1,14 @@
 <?php
 require_once 'connection.php';
 
-$stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date FROM posts P,follow F where P.id_user=F.id_following and F.id_follower=".$_SESSION['id_session']." ORDER BY post_date DESC");
+$stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+FROM posts P,follow F 
+WHERE P.id_user=F.id_following 
+  AND F.id_follower=".$_SESSION['id_session']." 
+UNION
+(SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+FROM posts 
+WHERE id_user=".$_SESSION['id_session']." )ORDER BY date DESC");
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $post_id = $row['id_post'];

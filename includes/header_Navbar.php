@@ -405,7 +405,7 @@ $donner =$req1->fetch();
                                     <div class="dropdown profile-nav-item">
                                         <a href="#" class="dropdown-bs-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="menu-profile">
-                                                <img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image">
+                                                <img src="<?php echo $donner['imgprfl_user'];  ?>" width="80" class="rounded-circle" alt="image">
                                                 <span class="name"><?php echo $donner['nom_user']; ?></span>
                                                 <span class="status-online"></span>
                                             </div>
