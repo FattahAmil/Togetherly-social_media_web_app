@@ -337,13 +337,10 @@ if ($id==false) {
                                 <label>Category</label>
                                 <select class="form-select">
                                     <option selected="1">Digital Marketing</option>
-                                    <option value="2">Dance Conference</option>
-                                    <option value="3">Food Festival</option>
-                                    <option value="4">Film Festival</option>
-                                    <option value="5">Language Festival</option>
-                                    <option value="6">Business Conference</option>
-                                    <option value="7">Shopping Conference</option>
-                                    <option value="8">Music Party</option>
+                                    <option value="2">Language Festival</option>
+                                    <option value="3">Business Conference</option>
+                                    <option value="4">en ligne Conference</option>
+                                    
                                 </select>
                             </div>
                         </div>
