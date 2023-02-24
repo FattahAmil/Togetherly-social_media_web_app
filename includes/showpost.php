@@ -1,14 +1,14 @@
 <?php
 require_once 'connection.php';
 
-$stmt = $conn->query("SELECT * FROM posts P,follow F where P.id_user=F.id_following and F.id_follower=".$_SESSION['id_session']." ORDER BY post_date DESC");
+$stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date FROM posts P,follow F where P.id_user=F.id_following and F.id_follower=".$_SESSION['id_session']." ORDER BY post_date DESC");
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $post_id = $row['id_post'];
   $user_id = $row['id_user'];
   $content = $row['content'];
   $media = $row['media'];
-  $post_date = $row['post_date'];
+  $post_date = $row['date'];
 
   // Retrieve information about the user who posted the post
   $stmt_user = $conn->prepare("SELECT * FROM users WHERE id_user=:user_id");
@@ -28,7 +28,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
  </div>
   <div class='info ms-3'>
   <span class='name'><a href='my-profile.html'><?php echo $username ;?></a></span>
-  <span class='small-text'><a href='#'><?php echo $post_date ; ?></a></span>
+  <span class='small-text'><a href='#'><?php echo $post_date;?></a></span>
   </div>
   <div class='dropdown'>
   <button class='dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='flaticon-menu'></i></button>
