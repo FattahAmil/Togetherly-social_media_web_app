@@ -1,7 +1,7 @@
 <?php
 require_once 'connection.php';
 
-$stmt = $conn->query("SELECT * FROM posts ORDER BY post_date DESC");
+$stmt = $conn->query("SELECT * FROM posts P,follow F where P.id_user=F.id_following and F.id_follower=".$_SESSION['id_session']." ORDER BY post_date DESC");
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $post_id = $row['id_post'];
@@ -23,7 +23,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <div class='post-header d-flex justify-content-between align-items-center'>
   <div class='image'>
  <?php if (!empty($profile_image)) { ?>
-    <a href='my-profile.html'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' width="60"></a>
+    <a href='my-profile.php'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' width="60"></a>
  <?php } ?>
  </div>
   <div class='info ms-3'>

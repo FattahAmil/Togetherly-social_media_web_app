@@ -6,7 +6,6 @@ $req1->execute();
 
 ?>
 
-
 <div class="widget widget-view-profile">
                                 <div class="profile-box d-flex justify-content-between align-items-center">
                                     <a href="my-profile.php"><img src="assets/images/user/user-1.jpg" alt="image"></a>
@@ -63,3 +62,4 @@ $req1->execute();
                                     <a href="my-profile.php" class="default-btn">View Profile</a>
                                 </div>
                             </div>
+                            
