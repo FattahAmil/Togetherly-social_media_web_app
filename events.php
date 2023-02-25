@@ -340,7 +340,6 @@ if ($id==false) {
                                     <option value="2">Language Festival</option>
                                     <option value="3">Business Conference</option>
                                     <option value="4">en ligne Conference</option>
-                                    
                                 </select>
                             </div>
                         </div>
