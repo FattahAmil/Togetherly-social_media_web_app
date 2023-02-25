@@ -73,9 +73,9 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id_like`, `likeType`, `id_post`, `id_user`) VALUES
-(1, '', 24, 3),
-(2, '', 24, 1),
-(3, '', 25, 3),
+(1, 'like', 24, 3),
+(2, 'like', 24, 1),
+(3, 'like', 25, 3),
 (4, 'like', 20, 2),
 (6, 'like', 17, 2),
 (8, 'like', 25, 2);

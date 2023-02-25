@@ -81,7 +81,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                             <span>Like</span>
                                             <span class="number"><?php echo $num_likes; ?></span>
                                         </a>
-                                        </li>
+                                        
                                         <ul class="react-list">
                                         <li>
                                             <a href="#" data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
@@ -200,20 +200,3 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
  </div> <?php
 }
 ?>
-<script>
-    function like(post_id,user_id){
-        $.ajax({
-                type: "GET",
-                url: "./action/like.php",
-                data: { post_id: post_id, user_id: user_id},
-                success: function(response) {
-                    
-                    $('#following').text(response);
-                // effectuer une autre action
-                },
-                error: function() {
-                alert("Erreur lors de la adhission du user");
-                }
-              });
-    }
-</script>
