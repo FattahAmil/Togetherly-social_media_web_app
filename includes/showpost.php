@@ -1,3 +1,10 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/likes.js"></script>
+</head>
 <?php
 require_once 'connection.php';
 
@@ -17,6 +24,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $result_user = $stmt_user->fetch(PDO::FETCH_ASSOC);
   $username = $result_user['nom_user'] . ' ' . $result_user['prenom_user'];
   $profile_image = $result_user['imgprfl_user'];
+
+  // Retrieve the number of likes for the post
+  $stmt_numlike = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_post = :id_post");
+  $stmt_numlike->bindParam(':id_post', $post_id);
+  $stmt_numlike->execute();
+  $num_likes = $stmt_numlike->fetchColumn();
 
   // Display the post ?>
   <div class='news-feed news-feed-post'>
@@ -53,32 +66,59 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                  ?>
                                     </div>
                                     <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
+                                        
                                         <li class="post-react">
-                                            <a href="#"><i class="flaticon-like"></i><span>Like</span> <span class="number">1499 </span></a>
-
-                                            <ul class="react-list">
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-1.png" alt="Like"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-2.png" alt="Like"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-3.png" alt="Like"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-4.png" alt="Like"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-5.png" alt="Like"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-6.png" alt="Like"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><img src="assets/images/react/react-7.png" alt="Like"></a>
-                                                </li>
-                                            </ul>
+                                        <a href="#" class="like-button" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
+                                         onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
+                                            <i class="flaticon-like"></i>
+                                            <span>Like</span>
+                                            <span class="number"><?php echo $num_likes; ?></span>
+                                        </a>
+                                        </li>
+                                        <ul class="react-list">
+                                        <li>
+                                            <a href="#" data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'like')">
+                                                <img src="assets/images/react/react-1.png" alt="Like">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
+                                               onclick="addLike(<?php echo $row['id_post']; ?>, 'love')">
+                                                <img src="assets/images/react/react-2.png" alt="Love">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')">
+                                                <img src="assets/images/react/react-3.png" alt="thankful">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')">
+                                                <img src="assets/images/react/react-7.png" alt="haha">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')">
+                                                <img src="assets/images/react/react-4.png" alt="Wow">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')">
+                                                <img src="assets/images/react/react-5.png" alt="Sad">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')">
+                                                <img src="assets/images/react/react-6.png" alt="Angry">
+                                            </a>
+                                        </li>
+                                        </ul>
                                         </li>
                                         <li class="post-comment">
                                             <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599 </span></a>
