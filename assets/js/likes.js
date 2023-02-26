@@ -8,18 +8,14 @@ function addLike(id_post, like_type) {
             like_type: like_type
         },
         success: function(data) {
-            // Update the number of likes
-            $('.number').text(data.num_likes);
-
-            // Update the selected reaction
-            $('.post-react a').removeClass('active');
-            if (data.like_type) {
-                $('.react-list a[data-type="' + data.like_type + '"]').addClass('active');
-            }
+            data1=JSON.parse(data);
+            // Update the number of likes  
+           $("#numberlike-"+id_post).text(data1.num_likes);
+           
+         
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);
         }
     });
 }
-s

@@ -50,17 +50,14 @@ if (!$like) {
         $stmt_updatelike->execute();
     }
 }
-
-
-// Get the number of likes for the post
-$stmt_numlike = $conn->prepare("SELECT COUNT(*) AS num_likes FROM likes WHERE id_post = :id_post");
-$stmt_numlike->bindParam(':id_post', $post_id);
-$stmt_numlike->execute();
-$result = $stmt_numlike->fetch(PDO::FETCH_ASSOC);
+$reqlike = $conn->prepare("SELECT * FROM likes WHERE id_post = ?");
+$reqlike->execute(array($id_post));
+$numlike=$reqlike->rowCount();
 
 // Return the number of likes and the selected reaction type
 $response = array(
-    'num_likes' => $result['num_likes'],
+    'num_likes' => $numlike,
     'like_type' => $like_type
 );
-echo json_encode($response); 
+$json_string = json_encode($response);
+echo $json_string;

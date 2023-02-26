@@ -75,53 +75,53 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                                         
                                         <li class="post-react">
-                                        <a href="#" class="like-button" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
-                                         onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
+                                        <a class="like-button" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
+                                         onclick="addLike(<?php echo $row['id_post']; ?>,'like')" style="cursor: pointer;" a>
                                             <i class="flaticon-like"></i>
                                             <span>Like</span>
-                                            <span class="number"><?php echo $num_likes; ?></span>
+                                            <span id="numberlike-<?php echo $row['id_post'];?>" class="numberlike"><?php echo $num_likes; ?></span>
                                         </a>
                                         
                                         <ul class="react-list">
                                         <li>
-                                            <a href="#" data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'like')">
+                                            <a data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-1.png" alt="Like">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
-                                               onclick="addLike(<?php echo $row['id_post']; ?>, 'love')">
+                                            <a data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
+                                               onclick="addLike(<?php echo $row['id_post']; ?>, 'love')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-2.png" alt="Love">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')">
+                                            <a data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-3.png" alt="thankful">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')">
+                                            <a data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-7.png" alt="haha">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')">
+                                            <a data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-4.png" alt="Wow">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')">
+                                            <a data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-5.png" alt="Sad">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')">
+                                            <a data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')" style="cursor: pointer;">
                                                 <img src="assets/images/react/react-6.png" alt="Angry">
                                             </a>
                                         </li>
