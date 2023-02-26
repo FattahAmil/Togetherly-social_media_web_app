@@ -54,7 +54,7 @@ if (!$like) {
 
 // Get the number of likes for the post
 $stmt_numlike = $conn->prepare("SELECT COUNT(*) AS num_likes FROM likes WHERE id_post = :id_post");
-$stmt_numlike->bindParam(':id_post', $post_id);
+$stmt_numlike->bindParam(':id_post', $id_post);
 $stmt_numlike->execute();
 $result = $stmt_numlike->fetch(PDO::FETCH_ASSOC);
 
