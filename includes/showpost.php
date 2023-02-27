@@ -79,7 +79,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                          onclick="addLike(<?php echo $row['id_post']; ?>,'like')" style="cursor: pointer;" a>
                                             <i class="flaticon-like"></i>
                                             <span>Like</span>
-                                            <span id="numberlike-<?php echo $row['id_post'];?>" class="numberlike"><?php echo $num_likes; ?></span>
+                                            <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
                                         </a>
                                         
                                         <ul class="react-list">
