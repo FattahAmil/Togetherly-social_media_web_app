@@ -4,6 +4,8 @@
     <title>My Page</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./assets/js/likes.js"></script>
+    <script src="./assets/js/comments.js"></script>
+
 </head>
 <?php
 require_once 'connection.php';
@@ -18,7 +20,7 @@ FROM posts
 WHERE id_user=".$_SESSION['id_session']." )ORDER BY date DESC");
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-  $post_id = $row['id_post'];
+  $id_post = $row['id_post'];
   $user_id = $row['id_user'];
   $content = $row['content'];
   $media = $row['media'];
@@ -34,9 +36,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
   // Retrieve the number of likes for the post
   $stmt_numlike = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_post = :id_post");
-  $stmt_numlike->bindParam(':id_post', $post_id);
+  $stmt_numlike->bindParam(':id_post', $id_post);
   $stmt_numlike->execute();
   $num_likes = $stmt_numlike->fetchColumn();
+
+    
+  // Get the number of comments for the post
+  $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
+  $stmt_numcomment->bindParam(':id_post', $id_post);
+  $stmt_numcomment->execute();
+  $num_comments = $stmt_numcomment->fetchColumn();
+
 
   // Display the post ?>
   <div class='news-feed news-feed-post'>
@@ -75,8 +85,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                                         
                                         <li class="post-react">
-                                        <a class="like-button" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
-                                         onclick="addLike(<?php echo $row['id_post']; ?>,'like')" style="cursor: pointer;" a>
+                                        <a href="#" class="like-button" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
+                                         onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
                                             <i class="flaticon-like"></i>
                                             <span>Like</span>
                                             <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
@@ -84,117 +94,104 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         
                                         <ul class="react-list">
                                         <li>
-                                            <a data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" style="cursor: pointer;">
+                                            <a href="#" data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'like')">
                                                 <img src="assets/images/react/react-1.png" alt="Like">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
-                                               onclick="addLike(<?php echo $row['id_post']; ?>, 'love')" style="cursor: pointer;">
+                                            <a href="#" data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
+                                               onclick="addLike(<?php echo $row['id_post']; ?>, 'love')">
                                                 <img src="assets/images/react/react-2.png" alt="Love">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')" style="cursor: pointer;">
+                                            <a href="#" data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')">
                                                 <img src="assets/images/react/react-3.png" alt="thankful">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')" style="cursor: pointer;">
+                                            <a href="#" data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')">
                                                 <img src="assets/images/react/react-7.png" alt="haha">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')" style="cursor: pointer;">
+                                            <a href="#" data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')">
                                                 <img src="assets/images/react/react-4.png" alt="Wow">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')" style="cursor: pointer;">
+                                            <a href="#" data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')">
                                                 <img src="assets/images/react/react-5.png" alt="Sad">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
-                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')" style="cursor: pointer;">
+                                            <a href="#" data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')">
                                                 <img src="assets/images/react/react-6.png" alt="Angry">
                                             </a>
                                         </li>
                                         </ul>
                                         </li>
                                         <li class="post-comment">
-                                            <a href="#"><i class="flaticon-comment"></i><span>Comment</span> <span class="number">599 </span></a>
+                                            <a href="viewseparatepost.php"><i class="flaticon-comment"></i><span>Comment</span> <span class="number"><?php echo $num_comments; ?> </span></a>
                                         </li>
                                         <li class="post-share">
                                             <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">24 </span></a>
                                         </li>
                                     </ul>
                                     <div class="post-comment-list">
-                                        <div class="comment-list">
-                                            <div class="comment-image">
-                                                <a href="my-profile.html"><img src="assets/images/user/user-33.jpg" class="rounded-circle" alt="image"></a>
-                                            </div>
-                                            <div class="comment-info">
-                                                <h3>
-                                                    <a href="my-profile.html">David Moore</a>
-                                                </h3>
-                                                <span>5 Mins Ago</span>
-                                                <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget malesuada donec rutrum congue leo eget malesuada. Praesent sapien massa convallis a pellentesque non nisi curabitur non nulla sit amet nisl tempus convallis lectus.</p>
-                                                <ul class="comment-react">
-                                                    <li><a href="#" class="like">Like(2)</a></li>
-                                                    <li><a href="#">Reply</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="comment-list">
-                                            <div class="comment-image">
-                                                <a href="my-profile.html"><img src="assets/images/user/user-34.jpg" class="rounded-circle" alt="image"></a>
-                                            </div>
-                                            <div class="comment-info">
-                                                <h3>
-                                                    <a href="my-profile.html">Claire P. Toy</a>
-                                                </h3>
-                                                <span>45 Mins Ago</span>
-                                                <p>Donec rutrum congue leo eget malesuada praesent sapien massa convallis a pellentesque nec egestas non nisi curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                                                <ul class="comment-react">
-                                                    <li><a href="#" class="like">Like(12)</a></li>
-                                                    <li><a href="#">Reply</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="comment-list">
-                                            <div class="comment-image">
-                                                <a href="my-profile.html"><img src="assets/images/user/user-8.jpg" class="rounded-circle" alt="image"></a>
-                                            </div>
-                                            <div class="comment-info">
-                                                <h3>
-                                                    <a href="my-profile.html">Karen Williams</a>
-                                                </h3>
-                                                <span>5 Mins Ago</span>
-                                                <p>Donec rutrum congue leo eget malesuada nulla quis lorem ut libero malesuada feugiat donec rutrum congue leo eget.</p>
-                                                <ul class="comment-react">
-                                                    <li><a href="#" class="like">Like(2)</a></li>
-                                                    <li><a href="#">Reply</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="more-comments">
-                                            <a href="#">More Comments+</a>
-                                        </div>
+                                      <?php
+                                          // Fetch comments for a post from the database
+                                          $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post limit 2");
+                                          $stmt_comments->bindParam(':id_post', $id_post);
+                                          $stmt_comments->execute();
+                                          $comments = $stmt_comments->fetchAll(PDO::FETCH_ASSOC);
+
+                                          // Loop through comments and display them
+                                          foreach ($comments as $comment) {
+                                              $stmt_user = $conn->prepare("SELECT * FROM users WHERE id_user = :id_user");
+                                              $stmt_user->bindParam(':id_user', $comment['id_user']);
+                                              $stmt_user->execute();
+                                              $user = $stmt_user->fetch(PDO::FETCH_ASSOC);
+                                      ?>
+                                      <div class="comment-list">
+                                          <div class="comment-image">
+                                              <a href="my-profile.html"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image"></a>
+                                          </div>
+                                          <div class="comment-info">
+                                              <h3><a href="my-profile.html"><?php echo $user['prenom_user'].$user['nom_user']; ?></a></h3>
+                                              <span><?php echo $comment['created_at']; ?></span>
+                                              <p><?php echo $comment['comment']; ?></p>
+                                              <ul class="comment-react">
+                                                  <li><a href="#" class="like">Like(2)</a></li>
+                                                  <li><a href="#">Reply</a></li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                      <?php } ?>
+                                
                                     </div>
-                                    <form class="post-footer">
+                                    <form class="post-footer" action="./action/addcomment.php" enctype="multipart/form-data" method="POST" id="comment-form">
                                         <div class="footer-image">
                                             <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
                                         </div>
-                                        <div class="form-group">
-                                            <textarea name="message" class="form-control" placeholder="Write a comment..."></textarea>
-                                            <label><a href="#"><i class="flaticon-photo-camera"></i></a></label>
-                                        </div>
+                                            <div class="form-group">
+                                                <textarea name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
+                                                <input type="hidden" name="id_post" value="<?php echo $row['id_post']; ?>">
+                                                <label>
+                                                    <a href="#">
+                                                        <i class="flaticon-photo-camera"> </i>
+                                                        <input type="file" name="media-comment" id="photo_upload" style="display:none;">
+                                                    </a>
+                                                </label>
+                                                <input type="submit" value="Comment" name="comment">
+                                            </div>
+                                        </form>
                                     </form>
                                 </div>
  </div> <?php
