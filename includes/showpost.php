@@ -40,7 +40,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $stmt_numlike->execute();
   $num_likes = $stmt_numlike->fetchColumn();
 
-    
+  
+
+  // Check if the user has already liked the post
+$id_user = $_SESSION['id_session']; 
+$stmt_like = $conn->prepare("SELECT * FROM likes WHERE id_post = :id_post AND id_user = :id_user");
+$stmt_like->bindParam(':id_post', $id_post);
+$stmt_like->bindParam(':id_user', $id_user);
+$stmt_like->execute();
+$like = $stmt_like->fetch(PDO::FETCH_ASSOC);
+
+
   // Get the number of comments for the post
   $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
   $stmt_numcomment->bindParam(':id_post', $id_post);
@@ -87,7 +97,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         <li class="post-react">
                                         <a class="like-button" style="cursor:pointer;" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
                                          onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
-                                            <i class="flaticon-like"></i>
+                                            <i id="isLiked-<?php echo $row['id_post'];?>" class="bi bi-hand-thumbs-up" ></i>
                                             <span>Like</span>
                                             <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
                                         </a>
@@ -159,7 +169,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                               $stmt_user->execute();
                                               $user = $stmt_user->fetch(PDO::FETCH_ASSOC);
                                       ?>
-                                      
+
                                       <div class="comment-list">
                                           <div class="comment-image">
                                               <a href="my-profile.html"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image"></a>

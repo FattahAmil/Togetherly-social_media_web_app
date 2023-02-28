@@ -255,7 +255,7 @@ if ($id==false) {
         <div class="copyrights-area">
             <div class="container">
                 <div class="row align-items-center">
-                    <p><i class="ri-copyright-line"></i> 2021 Zust. All Rights Reserved by <a href="https://envytheme.com/" target="_blank">EnvyTheme</a></p>
+                    <p><i class="ri-copyright-line"></i> 2021 Zust. All Rights Reserved by <a href="https://mounire.com/" target="_blank">monirehamli</a></p>
                 </div>
             </div>
         </div>
