@@ -24,6 +24,9 @@ $stmt_like->bindParam(':id_user', $id_user);
 $stmt_like->execute();
 $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
 
+
+
+$isLiked=false;
 // Update the like in the database
 if (!$like) {   
     // Insert a new like
@@ -33,6 +36,7 @@ if (!$like) {
     $stmt_insertlike->bindParam(':like_type', $like_type);
     $stmt_insertlike->execute();
 } else {
+    $isLiked=true;
     // Check if the like type is the same as the previous one
     if ($like['likeType'] == $like_type) {
         // Remove the existing like
@@ -61,6 +65,7 @@ $result = $stmt_numlike->fetch(PDO::FETCH_ASSOC);
 // Return the number of likes and the selected reaction type
 $response = array(
     'num_likes' => $result['num_likes'],
-    'like_type' => $like_type
+    'like_type' => $like_type,
+    'isLiked' => $isLiked
 );
 echo json_encode($response); 

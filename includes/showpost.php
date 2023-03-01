@@ -41,7 +41,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $stmt_numlike->execute();
   $num_likes = $stmt_numlike->fetchColumn();
 
-    
+  
+
+  // Check if the user has already liked the post
+$id_user = $_SESSION['id_session']; 
+$stmt_like = $conn->prepare("SELECT * FROM likes WHERE id_post = :id_post AND id_user = :id_user");
+$stmt_like->bindParam(':id_post', $id_post);
+$stmt_like->bindParam(':id_user', $id_user);
+$stmt_like->execute();
+$like = $stmt_like->fetch(PDO::FETCH_ASSOC);
+
+
   // Get the number of comments for the post
   $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
   $stmt_numcomment->bindParam(':id_post', $id_post);
@@ -86,52 +96,52 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                                         
                                         <li class="post-react">
-                                        <a href="#" class="like-button" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
+                                        <a class="like-button" style="cursor:pointer;" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
                                          onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
-                                            <i class="flaticon-like"></i>
+                                            <i id="isLiked-<?php echo $row['id_post'];?>" class="bi bi-hand-thumbs-up" ></i>
                                             <span>Like</span>
-                                            <span class="number"><?php echo $num_likes; ?></span>
+                                            <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
                                         </a>
                                         
                                         <ul class="react-list">
                                         <li>
-                                            <a href="#" data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a  data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
                                              onclick="addLike(<?php echo $row['id_post']; ?>, 'like')">
                                                 <img src="assets/images/react/react-1.png" alt="Like">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
                                                onclick="addLike(<?php echo $row['id_post']; ?>, 'love')">
                                                 <img src="assets/images/react/react-2.png" alt="Love">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
                                              onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')">
                                                 <img src="assets/images/react/react-3.png" alt="thankful">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
                                              onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')">
                                                 <img src="assets/images/react/react-7.png" alt="haha">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
                                              onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')">
                                                 <img src="assets/images/react/react-4.png" alt="Wow">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
                                              onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')">
                                                 <img src="assets/images/react/react-5.png" alt="Sad">
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
+                                            <a data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
                                              onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')">
                                                 <img src="assets/images/react/react-6.png" alt="Angry">
                                             </a>
@@ -139,7 +149,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                         </ul>
                                         </li>
                                         <li class="post-comment">
-                                            <a href="viewseparatepost.php"><i class="flaticon-comment"></i><span>Comment</span> <span class="number"><?php echo $num_comments; ?> </span></a>
+                                            <a><i class="flaticon-comment"></i><span>Comment</span> <span class="number" id="number-comment<?php echo $row['id_post']; ?>"><?php echo $num_comments; ?> </span></a>
                                         </li>
                                         <li class="post-share">
                                             <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">24 </span></a>
@@ -148,7 +158,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <div class="post-comment-list">
                                       <?php
                                           // Fetch comments for a post from the database
-                                          $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post limit 2");
+                                          $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post limit 3");
                                           $stmt_comments->bindParam(':id_post', $id_post);
                                           $stmt_comments->execute();
                                           $comments = $stmt_comments->fetchAll(PDO::FETCH_ASSOC);
@@ -160,12 +170,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                               $stmt_user->execute();
                                               $user = $stmt_user->fetch(PDO::FETCH_ASSOC);
                                       ?>
+
                                       <div class="comment-list">
                                           <div class="comment-image">
                                               <a href="my-profile.html"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image"></a>
                                           </div>
                                           <div class="comment-info">
-                                              <h3><a href="my-profile.html"><?php echo $user['prenom_user'].$user['nom_user']; ?></a></h3>
+                                              <h3><a href="my-profile.html"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
                                               <span><?php echo $comment['created_at']; ?></span>
                                               <p><?php echo $comment['comment']; ?></p>
                                               <ul class="comment-react">
@@ -177,20 +188,24 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                       <?php } ?>
                                 
                                     </div>
-                                    <form class="post-footer" action="./action/addcomment.php" enctype="multipart/form-data" method="POST" id="comment-form">
+                                    <form class="post-footer" action="" method="POST" id="comment-form">
                                         <div class="footer-image">
                                             <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
                                         </div>
                                             <div class="form-group">
-                                                <textarea name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
-                                                <input type="hidden" name="id_post" value="<?php echo $row['id_post']; ?>">
+                                                <textarea id="content-of-comment-<?php echo $row['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
+                                               <!-- <input type="hidden" name="id_post" value="<?php// echo $row['id_post']; ?>"> -->
                                                 <label>
+<<<<<<< HEAD
                                                     <a href="#">
                                                         <i class="flaticon-photo-camera"> </i>
                                                         <input type="file" name="media-comment" id="media-comment" style="display:none;">
+=======
+                                                    <a onclick="addcomments(<?php echo $row['id_post']; ?>,document.getElementById('content-of-comment-<?php echo $row['id_post']; ?>') )">
+                                                        <i class="bi bi-send-fill" style="cursor:pointer;"> </i>
+>>>>>>> 7665647b826665b9f111d763c00bc6ede5775be4
                                                     </a>
                                                 </label>
-                                                <input type="submit" value="Comment" name="comment">
                                             </div>
                                         </form>
                                     </form>

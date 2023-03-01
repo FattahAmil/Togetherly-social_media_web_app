@@ -19,6 +19,7 @@ if ($id==false) {
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
         <link rel="stylesheet" href="assets/css/remixicon.css">
         <link rel="stylesheet" href="assets/css/flaticon.css">
@@ -254,7 +255,7 @@ if ($id==false) {
         <div class="copyrights-area">
             <div class="container">
                 <div class="row align-items-center">
-                    <p><i class="ri-copyright-line"></i> 2021 Zust. All Rights Reserved by <a href="https://envytheme.com/" target="_blank">EnvyTheme</a></p>
+                    <p><i class="ri-copyright-line"></i> 2021 Zust. All Rights Reserved by <a href="https://mounire.com/" target="_blank">monirehamli</a></p>
                 </div>
             </div>
         </div>
