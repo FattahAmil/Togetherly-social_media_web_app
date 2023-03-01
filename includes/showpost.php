@@ -8,6 +8,7 @@
 
 </head>
 <?php
+
 require_once 'connection.php';
 
 $stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
@@ -186,7 +187,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                                 <label>
                                                     <a href="#">
                                                         <i class="flaticon-photo-camera"> </i>
-                                                        <input type="file" name="media-comment" id="photo_upload" style="display:none;">
+                                                        <input type="file" name="media-comment" id="media-comment" style="display:none;">
                                                     </a>
                                                 </label>
                                                 <input type="submit" value="Comment" name="comment">
