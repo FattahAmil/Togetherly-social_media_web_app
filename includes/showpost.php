@@ -8,6 +8,7 @@
 
 </head>
 <?php
+
 require_once 'connection.php';
 
 $stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
@@ -197,8 +198,14 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                                 <textarea id="content-of-comment-<?php echo $row['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
                                                <!-- <input type="hidden" name="id_post" value="<?php// echo $row['id_post']; ?>"> -->
                                                 <label>
+<<<<<<< HEAD
+                                                    <a href="#">
+                                                        <i class="flaticon-photo-camera"> </i>
+                                                        <input type="file" name="media-comment" id="media-comment" style="display:none;">
+=======
                                                     <a onclick="addcomments(<?php echo $row['id_post']; ?>,document.getElementById('content-of-comment-<?php echo $row['id_post']; ?>') )">
                                                         <i class="bi bi-send-fill" style="cursor:pointer;"> </i>
+>>>>>>> 7665647b826665b9f111d763c00bc6ede5775be4
                                                     </a>
                                                 </label>
                                             </div>
