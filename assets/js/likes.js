@@ -9,7 +9,6 @@ function addLike(id_post, like_type) {
         },
         success: function(data) {
             data1=JSON.parse(data);
-             console.log(data1.isLiked);
             // Update the number of likes  
              $("#numberlike-"+id_post).text(data1.num_likes);
           

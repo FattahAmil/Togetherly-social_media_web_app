@@ -28,20 +28,41 @@ $stmt_insertcomment->bindParam(':id_post', $id_post);
 $stmt_insertcomment->bindParam(':id_user', $id_user);
 $stmt_insertcomment->bindParam(':comment', $comment);
 $stmt_insertcomment->bindParam(':created_at', $current_time);
-$stmt_insertcomment->execute();
-}
-
-
-
-
-  // Get the number of comments for the post
+if($stmt_insertcomment->execute()){
+   // Get the number of comments for the post
   $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
   $stmt_numcomment->bindParam(':id_post', $id_post);
   $stmt_numcomment->execute();
   $num_comments = $stmt_numcomment->fetch(PDO::FETCH_ASSOC);
 
+
+  $userComemnt=$conn->prepare("SELECT imgprfl_user,nom_user,prenom_user FROM users where id_user = :id_user");
+  $userComemnt->bindParam(':id_user', $id_user);
+  $userComemnt->execute();
+  $userInfo = $userComemnt->fetch(PDO::FETCH_ASSOC);
+  $response = array(
+    'num_comments' => $num_comments['num_comments'],
+    'idPost'=>$id_post,
+    'userInfo' => $userInfo,
+    'bodyComent'=> $comment,
+    'createdAt'=>$current_time
+  );
+  echo json_encode($response);
+}
+
+}
+
+
+
+
+  
+  // Fetch comments for a post from the database
+//   $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post limit 1");
+//   $stmt_comments->bindParam(':id_post', $id_post);
+//   $stmt_comments->execute();
+//   $comments2 = $stmt_comments->fetchAll(PDO::FETCH_ASSOC);
+
 // Return the number of likes and the selected reaction type
-$response = array(
-    'num_comments' => $num_comments['num_comments']
-);
-echo json_encode($response); 
+
+
+ 

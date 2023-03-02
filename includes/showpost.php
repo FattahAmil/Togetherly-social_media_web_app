@@ -97,7 +97,10 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                         <li class="post-react">
                                         <a class="like-button" style="cursor:pointer;" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
                                          onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
-                                            <i id="isLiked-<?php echo $row['id_post'];?>" class="bi bi-hand-thumbs-up" ></i>
+                                            <i id="isLiked-<?php echo $row['id_post'];?>" class="<?php if (!$like){  
+                                            echo "bi bi-hand-thumbs-up";}else {
+                                                echo "bi bi-hand-thumbs-up-fill";
+                                            }?>" ></i>
                                             <span>Like</span>
                                             <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
                                         </a>
@@ -154,10 +157,10 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                             <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">24 </span></a>
                                         </li>
                                     </ul>
-                                    <div class="post-comment-list">
+                                    <div class="post-comment-list" id="post-comment-list-<?php echo $row['id_post'];?>">
                                       <?php
                                           // Fetch comments for a post from the database
-                                          $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post limit 3");
+                                          $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post ORDER BY created_at DESC limit 3 ");
                                           $stmt_comments->bindParam(':id_post', $id_post);
                                           $stmt_comments->execute();
                                           $comments = $stmt_comments->fetchAll(PDO::FETCH_ASSOC);
@@ -172,15 +175,14 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
 
                                       <div class="comment-list">
                                           <div class="comment-image">
-                                              <a href="my-profile.html"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image"></a>
+                                              <a href="my-profile.php"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" width="60"></a>
                                           </div>
                                           <div class="comment-info">
-                                              <h3><a href="my-profile.html"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
+                                              <h3><a href="my-profile.php"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
                                               <span><?php echo $comment['created_at']; ?></span>
                                               <p><?php echo $comment['comment']; ?></p>
                                               <ul class="comment-react">
                                                   <li><a href="#" class="like">Like(2)</a></li>
-                                                  <li><a href="#">Reply</a></li>
                                               </ul>
                                           </div>
                                       </div>
