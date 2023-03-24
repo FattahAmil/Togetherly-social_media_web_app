@@ -3,7 +3,8 @@ $req=$conn->prepare("SELECT * FROM follow where id_follower=".$_SESSION['id_sess
 $req->execute();
 $req1=$conn->prepare("SELECT * FROM follow where id_following=".$_SESSION['id_session']);
 $req1->execute();
-
+$req2=$conn->prepare("SELECT * FROM likes l,posts p where l.id_post=p.id_post and p.id_user=".$_SESSION['id_session']);
+$req2->execute();
 ?>
 
 <div class="widget widget-view-profile">
@@ -17,7 +18,7 @@ $req1->execute();
                                 <ul class="profile-statistics">
                                     <li>
                                         <a href="#">
-                                            <span class="item-number">59862</span> 
+                                            <span class="item-number" id="liked"><?php echo $req2->rowCount();  ?></span> 
                                             <span class="item-text">Likes</span>
                                         </a>
                                     </li>

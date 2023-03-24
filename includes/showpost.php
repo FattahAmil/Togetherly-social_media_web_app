@@ -19,6 +19,8 @@ UNION
 (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
 FROM posts 
 WHERE id_user=".$_SESSION['id_session']." )ORDER BY date DESC");
+$stmtIdSession=$conn->query("SELECT * FROM users where id_user=".$_SESSION['id_session']);
+$rowIdSession=$stmtIdSession->fetch(PDO::FETCH_ASSOC);
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   $id_post = $row['id_post'];
@@ -64,12 +66,24 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
   <div class='post-header d-flex justify-content-between align-items-center'>
   <div class='image'>
  <?php if (!empty($profile_image)) { ?>
-    <a href='my-profile.php'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' width="60"></a>
+    <a href='<?php if ($user_id=$_SESSION['id_session']) {
+        echo 'my-profile.php';
+    }else {
+        echo 'my-profile.php?id=';
+    } ?>'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' width="60" height="60"></a>
  <?php } ?>
  </div>
   <div class='info ms-3'>
-  <span class='name'><a href='my-profile.html'><?php echo $username ;?></a></span>
-  <span class='small-text'><a href='#'><?php echo $post_date;?></a></span>
+  <span class='name'><a href='<?php if ($user_id=$_SESSION['id_session']) {
+        echo 'my-profile.php';
+    }else {
+        echo 'my-profile.php?id=';
+    } ?>'><?php echo $username ;?></a></span>
+  <span class='small-text'><a href='<?php if ($user_id=$_SESSION['id_session']) {
+        echo 'my-profile.php';
+    }else {
+        echo 'my-profile.php?id=';
+    } ?>'><?php echo $post_date;?></a></span>
   </div>
   <div class='dropdown'>
   <button class='dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='flaticon-menu'></i></button>
@@ -82,7 +96,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
   </div>
   <div class="post-body">
                                     <p><?php echo $content;  ?></p>
-                                    <div class="post-image">
+                                    <div class="post-image" style="text-align: center;">
                                     <?php if (!empty($media)) {
                                     if (pathinfo($media, PATHINFO_EXTENSION) === 'mp4') { ?>
                                     
@@ -161,7 +175,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                     <div class="post-comment-list" id="post-comment-list-<?php echo $row['id_post'];?>">
                                       <?php
                                           // Fetch comments for a post from the database
-                                          $stmt_comments = $conn->prepare("SELECT * FROM comments WHERE id_post = :id_post ORDER BY created_at DESC limit 3 ");
+                                          $stmt_comments = $conn->prepare("SELECT id_user,DATE_FORMAT(created_at, '%M %d, %Y %H:%i:%S') AS created1_at,comment,id_post FROM comments WHERE id_post = :id_post ORDER BY created_at DESC limit 3 ");
                                           $stmt_comments->bindParam(':id_post', $id_post);
                                           $stmt_comments->execute();
                                           $comments = $stmt_comments->fetchAll(PDO::FETCH_ASSOC);
@@ -180,7 +194,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                           </div>
                                           <div class="comment-info">
                                               <h3><a href="my-profile.php"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
-                                              <span><?php echo $comment['created_at']; ?></span>
+                                              <span><?php echo $comment['created1_at']; ?></span>
                                               <p><?php echo $comment['comment']; ?></p>
                                               <ul class="comment-react">
                                                   <li><a href="#" class="like">Like(2)</a></li>
@@ -192,11 +206,11 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                     </div>
                                     <form class="post-footer" action="" method="POST" id="comment-form">
                                         <div class="footer-image">
-                                            <a href="#"><img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image"></a>
+                                            <a href="#"><img src="<?php echo $rowIdSession['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
                                         </div>
                                             <div class="form-group">
                                                 <textarea id="content-of-comment-<?php echo $row['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
-                                               <!-- <input type="hidden" name="id_post" value="<?php// echo $row['id_post']; ?>"> -->
+                                               <!-- <input type="hidden" name="id_post" value="// echo $row['id_post']; "> -->
                                                 <label>
                                                     <a onclick="addcomments(<?php echo $row['id_post']; ?>,document.getElementById('content-of-comment-<?php echo $row['id_post']; ?>') )">
                                                         <i class="bi bi-send-fill" style="cursor:pointer;"> </i>

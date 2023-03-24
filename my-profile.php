@@ -10,6 +10,8 @@ $req=$conn->prepare("SELECT * FROM follow where id_follower=".$_SESSION['id_sess
 $req->execute();
 $req2=$conn->prepare("SELECT * FROM follow where id_following=".$_SESSION['id_session']);
 $req2->execute();
+$req3=$conn->prepare("SELECT * FROM likes l,posts p where l.id_post=p.id_post and p.id_user=".$_SESSION['id_session']);
+$req3->execute();
 
 ?>
 
@@ -22,6 +24,7 @@ $req2->execute();
 
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <link rel="stylesheet" href="assets/css/animate.min.css">
         <link rel="stylesheet" href="assets/css/remixicon.css">
         <link rel="stylesheet" href="assets/css/flaticon.css">
@@ -78,7 +81,7 @@ $req2->execute();
                         <div class="inner-info-box d-flex justify-content-between align-items-center">
                             <div class="info-image">
                                 <a href="#">
-                                    <img src="assets/images/my-profile.jpg" alt="image">
+                                    <img src="<?php echo $donner['imgprfl_user'];?>" style="width:250px;height:250px" alt="image">
                                 </a>
                                 <div class="icon">
                                     <a href="#"><i class="flaticon-photo-camera"></i></a>
@@ -91,7 +94,7 @@ $req2->execute();
                             <ul class="statistics">
                                 <li>
                                     <a href="#">
-                                        <span class="item-number">59862</span> 
+                                        <span class="item-number" id="liked"><?php echo $req3->rowCount(); ?></span> 
                                         <span class="item-text">Likes</span>
                                     </a>
                                 </li>

@@ -45,7 +45,7 @@ if($stmt_insertcomment->execute()){
     'idPost'=>$id_post,
     'userInfo' => $userInfo,
     'bodyComent'=> $comment,
-    'createdAt'=>$current_time
+    'createdAt'=>$current_time=date('F d, Y H:i:s', strtotime($current_time))
   );
   echo json_encode($response);
 }

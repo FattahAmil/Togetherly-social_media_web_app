@@ -8,13 +8,13 @@
                 <div class="sidemenu-body">
                     <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">
+                            <a href="index.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-newspaper"></i></span>
                                 <span class="menu-title">News Feed</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="notifications.html" class="nav-link">
+                            <a href="notifications.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-bell"></i></span>
                                 <span class="menu-title">Notifications</span>
                             </a>
@@ -26,19 +26,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="friends.html" class="nav-link">
+                            <a href="friends.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-friends"></i></span>
                                 <span class="menu-title">Friends</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="groups.html" class="nav-link">
+                            <a href="groups.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-team"></i></span>
                                 <span class="menu-title">Groups</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="favorite.html" class="nav-link">
+                            <a href="favorite.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-star"></i></span>
                                 <span class="menu-title">Favorite</span>
                             </a>
@@ -50,25 +50,25 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="live-chat.html" class="nav-link">
+                            <a href="live-chat.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-live-chat"></i></span>
                                 <span class="menu-title">Live Chat</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="video.html" class="nav-link">
+                            <a href="video.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-video"></i></span>
                                 <span class="menu-title">Video</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.html" class="nav-link">
+                            <a href="login.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-user"></i></span>
                                 <span class="menu-title">Login</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="register.html" class="nav-link">
+                            <a href="register.php" class="nav-link">
                                 <span class="icon"><i class="flaticon-information"></i></span>
                                 <span class="menu-title">Register</span>
                             </a>

@@ -62,10 +62,17 @@ $stmt_numlike->bindParam(':id_post', $id_post);
 $stmt_numlike->execute();
 $result = $stmt_numlike->fetch(PDO::FETCH_ASSOC);
 
+// Get the number of likes for the post
+$stmt_allLike = $conn->prepare("SELECT count(*) AS allLike FROM likes l,posts p where l.id_post = p.id_post and p.id_user = :id_user");
+$stmt_allLike->bindParam(':id_user', $id_user);
+$stmt_allLike->execute();
+$allLike = $stmt_allLike->fetch(PDO::FETCH_ASSOC);
+
 // Return the number of likes and the selected reaction type
 $response = array(
     'num_likes' => $result['num_likes'],
     'like_type' => $like_type,
-    'isLiked' => $isLiked
+    'isLiked' => $isLiked,
+    'allLike' => $allLike['allLike']
 );
 echo json_encode($response); 
