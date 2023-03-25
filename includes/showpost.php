@@ -192,14 +192,14 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                               <a href="<?php if ($user_id==$_SESSION['id_session']) {
         echo 'my-profile.php';
     }else {
-        echo 'profile.php?id='.$user_id;
+        echo 'profile.php?id='.$user['id_user'];
     } ?>"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" style="width:50px;height:50px;"></a>
                                           </div>
                                           <div class="comment-info">
                                               <h3><a href="<?php if ($user_id==$_SESSION['id_session']) {
         echo 'my-profile.php';
     }else {
-        echo 'profile.php?id='.$user_id;
+        echo 'profile.php?id='.$user['id_user'];
     } ?>"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
                                               <span><?php echo $comment['created1_at']; ?></span>
                                               <p><?php echo $comment['comment']; ?></p>
