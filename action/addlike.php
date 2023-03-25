@@ -4,7 +4,7 @@ require_once('../connection.php');
 
 // Sanitize the input parameters
 $id_post = filter_var($_GET['id_post'], FILTER_SANITIZE_NUMBER_INT);
-$like_type = filter_var($_GET['like_type'], FILTER_SANITIZE_STRING);
+$like_type =htmlspecialchars($_GET['like_type']);
 
 // Check if the post exists in the database
 $stmt_post = $conn->prepare("SELECT * FROM posts WHERE id_post = :id");

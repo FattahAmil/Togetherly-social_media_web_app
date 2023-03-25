@@ -4,7 +4,9 @@ require_once('../connection.php');
 
 // Sanitize the input parameters
 $id_post = filter_var($_GET['id_post'], FILTER_SANITIZE_NUMBER_INT);
-$comment = filter_var($_GET['content'], FILTER_SANITIZE_STRING);
+$comment = htmlspecialchars($_GET['content']);
+
+
 
 // Check if the post exists in the database
 if (!empty($comment)) {

@@ -5,7 +5,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./assets/js/likes.js"></script>
     <script src="./assets/js/comments.js"></script>
-
 </head>
 <?php
 
@@ -45,7 +44,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
   
 
-  // Check if the user has already liked the post
+// Check if the user has already liked the post
 $id_user = $_SESSION['id_session']; 
 $stmt_like = $conn->prepare("SELECT * FROM likes WHERE id_post = :id_post AND id_user = :id_user");
 $stmt_like->bindParam(':id_post', $id_post);
@@ -114,7 +113,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                          onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
                                             <i id="isLiked-<?php echo $row['id_post'];?>" class="<?php if (!$like){  
                                             echo "bi bi-hand-thumbs-up";}else {
-                                                echo "bi bi-hand-thumbs-up-fill";
+                                            echo "bi bi-hand-thumbs-up-fill";
                                             }?>" ></i>
                                             <span>Like</span>
                                             <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>

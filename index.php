@@ -72,7 +72,7 @@ if ($id==false) {
                             <!-- end view-profile -->
                             <!--  start whatch video -->
                             <?php include_once"includes/watch-video.php"; ?>
-                            <!--  start whatch video -->     
+                            <!--  end whatch video -->     
                             <div class="widget widget-advertisement">
                                 <h3 class="widget-title">Advertisement</h3>
 

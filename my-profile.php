@@ -6,6 +6,8 @@ if ($id==false) {
     header("location:login.php");
 }
 
+
+
 $req=$conn->prepare("SELECT * FROM follow where id_follower=".$_SESSION['id_session']);
 $req->execute();
 $req2=$conn->prepare("SELECT * FROM follow where id_following=".$_SESSION['id_session']);

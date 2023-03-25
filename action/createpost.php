@@ -11,15 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $media = $_FILES['photo']['name'];
             move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads/' . $media);
         }
+        
         if (!empty($_FILES['video']['name'])) {
             $media = $_FILES['video']['name'];
             move_uploaded_file($_FILES['video']['tmp_name'], 'uploads/' . $media);
         }
+
         $id_user = $_SESSION['id_session'];
         $stmt = $conn->prepare("INSERT INTO posts (id_user, content, media, post_date) VALUES (?, ?, ?, NOW())");
         $stmt->execute([$id_user, $message, $media]);
 
-        header('Location: ../index.php');
+        header('location:'.$_SERVER["HTTP_REFERER"]);
 
     } else {
         echo "Please enter a message";
