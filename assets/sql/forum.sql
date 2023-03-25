@@ -165,7 +165,7 @@ INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `email_user`, `pass_u
 --
 -- Index pour les tables déchargées
 --
-
+CREATE TABLE notifications ( id_notification INT AUTO_INCREMENT PRIMARY KEY, id_user INT NOT NULL, notification_type ENUM( 'post', 'comment', 'like') NOT NULL, id_type INT NOT NULL, is_read TINYINT(1) NOT NULL DEFAULT 0, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (id_user) REFERENCES users(id_user), FOREIGN KEY (id_type) REFERENCES likes(id_like) ON DELETE CASCADE, FOREIGN KEY (id_type) REFERENCES comments(id_comment) ON DELETE CASCADE, FOREIGN KEY (id_type) REFERENCES comments(id_post) ON DELETE CASCADE );
 --
 -- Index pour la table `comments`
 --

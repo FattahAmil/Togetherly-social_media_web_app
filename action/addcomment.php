@@ -30,18 +30,30 @@ $stmt_insertcomment->bindParam(':id_post', $id_post);
 $stmt_insertcomment->bindParam(':id_user', $id_user);
 $stmt_insertcomment->bindParam(':comment', $comment);
 $stmt_insertcomment->bindParam(':created_at', $current_time);
+
 if($stmt_insertcomment->execute()){
+
+
    // Get the number of comments for the post
   $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
   $stmt_numcomment->bindParam(':id_post', $id_post);
   $stmt_numcomment->execute();
   $num_comments = $stmt_numcomment->fetch(PDO::FETCH_ASSOC);
 
+   // Get the post user id
+   $post_user_id = $post['id_user'];
 
-  $userComemnt=$conn->prepare("SELECT imgprfl_user,nom_user,prenom_user FROM users where id_user = :id_user");
-  $userComemnt->bindParam(':id_user', $id_user);
-  $userComemnt->execute();
-  $userInfo = $userComemnt->fetch(PDO::FETCH_ASSOC);
+// Insert a new row in the notifications table for the post user
+$stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user, notification_type, id_type,  created_at) VALUES (:id_user, 'comment', :id_type, :created_at)");
+$stmt_insertnotif->bindParam(':id_user', $post_user_id);
+$stmt_insertnotif->bindParam(':id_type', $id_post);
+$stmt_insertnotif->bindParam(':created_at', $current_time);
+$stmt_insertnotif->execute();
+
+  $userComment=$conn->prepare("SELECT imgprfl_user,nom_user,prenom_user FROM users where id_user = :id_user");
+  $userComment->bindParam(':id_user', $id_user);
+  $userComment->execute();
+  $userInfo = $userComment->fetch(PDO::FETCH_ASSOC);
   $response = array(
     'num_comments' => $num_comments['num_comments'],
     'idPost'=>$id_post,

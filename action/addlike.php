@@ -35,6 +35,7 @@ if (!$like) {
     $stmt_insertlike->bindParam(':id_user', $id_user);
     $stmt_insertlike->bindParam(':like_type', $like_type);
     $stmt_insertlike->execute();
+    
 } else {
     $isLiked=true;
     // Check if the like type is the same as the previous one

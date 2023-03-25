@@ -75,19 +75,19 @@ if ($id==false) {
                             </ul>
                         </div>
                     </div>
-                    <div class="item d-flex justify-content-between align-items-center">
-                        <div class="figure">
-                            <a href="my-profile.html"><img src="assets/images/user/user-55.jpg" class="rounded-circle" alt="image"></a>
+                        <div class="item d-flex justify-content-between align-items-center">
+                            <div class="figure">
+                                <a href="my-profile.html"><img src="assets/images/user/user-55.jpg" class="rounded-circle" alt="image"></a>
+                            </div>
+                            <div class="text">
+                                <h4><a href="my-profile.html">James Vanwin</a></h4>
+                                <span>Posted A Comment On Your Status</span>
+                                <span class="main-color">20 Minites Ago</span>
+                            </div>
+                            <div class="icon">
+                                <a href="#"><i class="flaticon-x-mark"></i></a>
+                            </div>
                         </div>
-                        <div class="text">
-                            <h4><a href="my-profile.html">James Vanwin</a></h4>
-                            <span>Posted A Comment On Your Status</span>
-                            <span class="main-color">20 Minites Ago</span>
-                        </div>
-                        <div class="icon">
-                            <a href="#"><i class="flaticon-x-mark"></i></a>
-                        </div>
-                    </div>
                     <div class="item d-flex justify-content-between align-items-center">
                         <div class="figure">
                             <a href="my-profile.html"><img src="assets/images/user/user-45.jpg" class="rounded-circle" alt="image"></a>
