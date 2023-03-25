@@ -32,6 +32,7 @@ CREATE TABLE `comments` (
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `comment` text NOT NULL,
+  `media-comment` text DEFAULT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -100,6 +101,7 @@ INSERT INTO `follow` (`id`, `id_follower`, `id_following`) VALUES
 CREATE TABLE `likes` (
   `id_like` int(11) NOT NULL,
   `likeType` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -172,7 +174,8 @@ CREATE TABLE `posts` (
   `id_user` int(11) NOT NULL,
   `content` text NOT NULL,
   `media` varchar(255) DEFAULT NULL,
-  `post_date` datetime NOT NULL
+  `post_date` datetime NOT NULL,
+  `num_likes` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -211,10 +214,10 @@ CREATE TABLE `users` (
   `email_user` varchar(150) NOT NULL,
   `pass_user` varchar(20) NOT NULL,
   `admin_user` int(11) NOT NULL,
-  `imgprfl_user` varchar(200) NOT NULL DEFAULT 'assets/images/user/user-32.jpg',
+  `imgprfl_user` varchar(200) NOT NULL,
   `phone_user` varchar(20) DEFAULT NULL,
   `gender_user` varchar(20) DEFAULT 'Unknown'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `users`
@@ -223,12 +226,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `email_user`, `pass_user`, `admin_user`, `imgprfl_user`, `phone_user`, `gender_user`) VALUES
 (1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, './imgprofile/daraganov2.png', NULL, 'Unknown'),
 (2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234', 0, './imgprofile/avatar.svg', NULL, 'Unknown'),
-(3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, 'assets/images/user/user-32.jpg', NULL, 'Unknown'),
-(4, 'hamli', 'mounire', 'mounire@gmail.com', 'mounire1234', 0, 'assets/images/user/user-32.jpg', NULL, 'Unknown');
+(3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, './imgprofile/mia2.jpg', NULL, 'Unknown');
 
 --
 -- Index pour les tables déchargées
 --
+
 
 --
 -- Index pour la table `comments`
@@ -253,6 +256,14 @@ ALTER TABLE `likes`
   ADD PRIMARY KEY (`id_like`),
   ADD UNIQUE KEY `post_user` (`id_post`,`id_user`),
   ADD KEY `id_user` (`id_user`);
+
+--
+-- Index pour la table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id_notification`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_type` (`id_type`);
 
 --
 -- Index pour la table `notifications`
@@ -313,7 +324,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
