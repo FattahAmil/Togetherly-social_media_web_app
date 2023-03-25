@@ -2,17 +2,23 @@
 session_start();
 require('connection.php');
 $id=$_SESSION['id_session'];
+$id_get=$_GET['id'];
 if ($id==false) {
     header("location:login.php");
 }
 
-$req=$conn->prepare("SELECT * FROM follow where id_follower=".$_SESSION['id_session']);
+$req=$conn->prepare("SELECT * FROM follow where id_follower=".$id_get);
 $req->execute();
-$req2=$conn->prepare("SELECT * FROM follow where id_following=".$_SESSION['id_session']);
+$req2=$conn->prepare("SELECT * FROM follow where id_following=".$id_get);
 $req2->execute();
-$req3=$conn->prepare("SELECT * FROM likes l,posts p where l.id_post=p.id_post and p.id_user=".$_SESSION['id_session']);
+$req3=$conn->prepare("SELECT * FROM likes l,posts p where l.id_post=p.id_post and p.id_user=".$id_get);
 $req3->execute();
 
+
+
+//recupere les donner de profile
+$req4 = $conn->query('SELECT * FROM users WHERE id_user='.$id_get);
+$donner_etulisateur =$req4->fetch();
 ?>
 
 <!doctype html>
@@ -81,15 +87,15 @@ $req3->execute();
                         <div class="inner-info-box d-flex justify-content-between align-items-center">
                             <div class="info-image">
                                 <a href="#">
-                                    <img src="<?php echo $donner['imgprfl_user'];?>" style="width:250px;height:250px" alt="image">
+                                    <img src="<?php echo $donner_etulisateur['imgprfl_user'];?>" style="width:250px;height:250px" alt="image">
                                 </a>
                                 <div class="icon">
                                     <a href="#"><i class="flaticon-photo-camera"></i></a>
                                 </div>
                             </div>
                             <div class="info-text ms-3">
-                                <h3><a href="#"><?php echo $donner['nom_user']." ".$donner['prenom_user'];?></a></h3>
-                                <span><a href="mailto:<?php echo $donner['email_user'];?>"><?php echo $donner['email_user'];?></a></span>
+                                <h3><a href="#"><?php echo $donner_etulisateur['nom_user']." ".$donner_etulisateur['prenom_user'];?></a></h3>
+                                <span><a href="mailto:<?php echo $donner_etulisateur['email_user'];?>"><?php echo $donner_etulisateur['email_user'];?></a></span>
                             </div>
                             <ul class="statistics">
                                 <li>
@@ -176,22 +182,15 @@ $req3->execute();
                                             <a href="#"><img src="assets/images/advertisement.jpg" alt="image"></a>
                                         </div>
                                     </div>
-                                    
-                                   <!--  start whatch video -->
-                            <?php include_once"includes/watch-video.php"; ?>
-                            <!--  start whatch video -->  
                                 </aside>
                             </div>
                             
                             <div class="col-lg-6 col-md-12">
                                 <div class="news-feed-area">
-                                 <!--  start create post   -->
-
-                            <?php include_once'includes/create_post_page.php';   ?>                            
-                        <!--  start create post   -->
+  
                         
                         <!--  start show post   -->
-                            <?php include_once'includes/showpost.php';   ?>                            
+                            <?php include_once'includes/showpost_profile.php';   ?>                            
                         <!--  end create post   -->
                                 </div>
                             </div>
@@ -234,16 +233,16 @@ $req3->execute();
 
                                     <ul class="information-list">
                                         <li>
-                                            <span>Email:</span> <a href="mailto:<?php echo $donner['email_user'];?>"><?php echo $donner['email_user'];?></a>
+                                            <span>Email:</span> <a href="mailto:<?php echo $donner_etulisateur['email_user'];?>"><?php echo $donner_etulisateur['email_user'];?></a>
                                         </li>
                                         <li>
                                             <span>Occupation:</span> UX Designer
                                         </li>
                                         <li>
-                                            <span>Phone:</span> <a href="tel:<?php echo $donner['phone_user'];?>"><?php echo $donner['phone_user'];?></a>
+                                            <span>Phone:</span> <a href="tel:<?php echo $donner_etulisateur['phone_user'];?>"><?php echo $donner_etulisateur['phone_user'];?></a>
                                         </li>
                                         <li>
-                                            <span>Gender:</span> <?php echo $donner['gender_user'];?>
+                                            <span>Gender:</span> <?php echo $donner_etulisateur['gender_user'];?>
                                         </li>
                                     </ul>
                                 </div>

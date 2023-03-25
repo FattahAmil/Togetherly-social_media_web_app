@@ -14,12 +14,12 @@ require_once 'connection.php';
 $stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
 FROM posts P,follow F 
 WHERE P.id_user=F.id_following 
-  AND F.id_follower=".$_SESSION['id_session']." 
+  AND F.id_follower=".$id_get." 
 UNION
 (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
 FROM posts 
-WHERE id_user=".$_SESSION['id_session']." )ORDER BY date DESC");
-$stmtIdSession=$conn->query("SELECT * FROM users where id_user=".$_SESSION['id_session']);
+WHERE id_user=".$id_get." )ORDER BY date DESC");
+$stmtIdSession=$conn->query("SELECT * FROM users where id_user=".$id_get);
 $rowIdSession=$stmtIdSession->fetch(PDO::FETCH_ASSOC);
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -218,7 +218,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
         echo 'my-profile.php';
     }else {
         echo 'profile.php?id='.$user_id;
-    } ?>"><img src="<?php echo $rowIdSession['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
+    } ?>"><img src="<?php echo $donner['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
                                         </div>
                                             <div class="form-group">
                                                 <textarea id="content-of-comment-<?php echo $row['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>

@@ -38,26 +38,7 @@ $req2->execute();
                                 <div class="profile-likes">
                                     <span><i class="flaticon-heart-shape-outline"></i> New Likes This Week</span>
 
-                                    <ul>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-22.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-23.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-24.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-25.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-26.jpg" alt="image"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="assets/images/user/user-27.jpg" alt="image"></a>
-                                        </li>
-                                    </ul>
+                                    
                                 </div>
                                 <div class="profile-btn">
                                     <a href="my-profile.php" class="default-btn">View Profile</a>
