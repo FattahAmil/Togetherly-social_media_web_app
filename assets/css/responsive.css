@@ -159,13 +159,14 @@
     padding: 20px;
   }
   .my-profile-inner-box .profile-info-box .inner-info-box .info-image {
-    margin-top: 0;
+    margin-top: 0;text-align: center;
   }
   .my-profile-inner-box .profile-info-box .inner-info-box .info-image .icon a i {
     display: none;
   }
   .my-profile-inner-box .profile-info-box .inner-info-box.d-flex {
     display: block !important;
+    
   }
   .my-profile-inner-box .profile-info-box .inner-info-box .info-text {
     margin-top: 15px;

@@ -187,7 +187,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                               $stmt_user->execute();
                                               $user = $stmt_user->fetch(PDO::FETCH_ASSOC);
                                       ?>
-
+                                       <div style="width: 50%;height: 0.5px;background-color: #eeeeee;margin-bottom: 27px;margin-left: 25%;"></div>
                                       <div class="comment-list">
                                           <div class="comment-image">
                                               <a href="<?php if ($user_id==$_SESSION['id_session']) {
@@ -204,9 +204,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
     } ?>"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
                                               <span><?php echo $comment['created1_at']; ?></span>
                                               <p><?php echo $comment['comment']; ?></p>
-                                              <ul class="comment-react">
-                                                  <li><a href="#" class="like">Like(2)</a></li>
-                                              </ul>
+                                              
                                           </div>
                                       </div>
                                       <?php } ?>

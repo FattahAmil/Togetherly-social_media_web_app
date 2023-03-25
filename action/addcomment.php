@@ -41,13 +41,12 @@ if($stmt_insertcomment->execute()){
   $num_comments = $stmt_numcomment->fetch(PDO::FETCH_ASSOC);
 
    // Get the post user id
-   $post_user_id = $post['id_user'];
+   
 
 // Insert a new row in the notifications table for the post user
-$stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user, notification_type, id_type,  created_at) VALUES (:id_user, 'comment', :id_type, :created_at)");
-$stmt_insertnotif->bindParam(':id_user', $post_user_id);
+$stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user, notification_type, id_type) VALUES (:id_user, 'comment', :id_type)");
+$stmt_insertnotif->bindParam(':id_user', $id_user);
 $stmt_insertnotif->bindParam(':id_type', $id_post);
-$stmt_insertnotif->bindParam(':created_at', $current_time);
 $stmt_insertnotif->execute();
 
   $userComment=$conn->prepare("SELECT imgprfl_user,nom_user,prenom_user FROM users where id_user = :id_user");
