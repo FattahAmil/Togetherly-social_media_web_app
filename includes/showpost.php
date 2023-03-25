@@ -70,7 +70,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
         echo 'my-profile.php';
     }else {
         echo 'my-profile.php?id=';
-    } ?>'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' width="60" height="60"></a>
+    } ?>'><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' style="width:60px;height:60px;"  ></a>
  <?php } ?>
  </div>
   <div class='info ms-3'>
@@ -190,7 +190,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
 
                                       <div class="comment-list">
                                           <div class="comment-image">
-                                              <a href="my-profile.php"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" width="60"></a>
+                                              <a href="my-profile.php"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" style="width:50px;height:50px;"></a>
                                           </div>
                                           <div class="comment-info">
                                               <h3><a href="my-profile.php"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
