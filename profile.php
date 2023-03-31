@@ -18,7 +18,6 @@ $req3=$conn->prepare("SELECT * FROM likes l,posts p where l.id_post=p.id_post an
 $req3->execute();
 //followers list
 $req5 = $conn->query('SELECT * FROM follow,users WHERE id_user=id_following and id_follower='.$id_get);
-
 //recupere les donner de profile
 $req4 = $conn->query('SELECT * FROM users WHERE id_user='.$id_get);
 $donner_etulisateur =$req4->fetch();
@@ -306,7 +305,7 @@ $donner_etulisateur =$req4->fetch();
                             <div class="tab-pane fade show active" id="all-friends" role="tabpanel">
                                 <div class="row justify-content-center">
                                     <?php  
-                                    while ($donner_follower=$req5->fetch(PDO::FETCH_ASSOC)) {
+                                    while ($donner_follower=$req5->fetch(PDO::FETCH_ASSOC)){
                                         //follower counter _follower
                                     $req5_1=$conn->prepare("SELECT * FROM follow where id_follower=".$donner_follower['id_user']);
                                     $req5_1->execute();
@@ -381,6 +380,60 @@ $donner_etulisateur =$req4->fetch();
                                     </div>
                                      <?php } ?>
                                 </div>
+                            </div>
+                            <div class="tab-pane fade" id="recently-added" role="tabpanel">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="single-friends-card">
+                                            <div class="friends-image">
+                                                <a href="#">
+                                                    <img src="assets/images/friends/friends-bg-3.jpg" alt="image">
+                                                </a>
+                                                <div class="icon">
+                                                    <a href="#"><i class="flaticon-user"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="friends-content">
+                                                <div class="friends-info d-flex justify-content-between align-items-center">
+                                                    <a href="#">
+                                                        <img src="assets/images/user/user-12.jpg" alt="image">
+                                                    </a>
+                                                    <div class="text ms-3">
+                                                        <h3><a href="#">Howard Tam</a></h3>
+                                                        <span>19 Mutual Friends</span>
+                                                    </div>
+                                                </div>
+                                                <ul class="statistics">
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="item-number">452</span> 
+                                                            <span class="item-text">Likes</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="item-number">120</span> 
+                                                            <span class="item-text">Following</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="item-number">328</span> 
+                                                            <span class="item-text">Followers</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="button-group d-flex justify-content-between align-items-center">
+                                                    <div class="add-friend-btn">
+                                                        <button type="submit">Add Friend</button>
+                                                    </div>
+                                                    <div class="send-message-btn">
+                                                        <button type="submit">Send Message</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
 
