@@ -16,6 +16,8 @@ $req3=$conn->prepare("SELECT * FROM likes l,posts p where l.id_post=p.id_post an
 $req3->execute();
 $req5 = $conn->query('SELECT * FROM follow,users WHERE id_user=id_following and id_follower='.$_SESSION['id_session']);
 
+
+
 ?>
 
 <!doctype html>
