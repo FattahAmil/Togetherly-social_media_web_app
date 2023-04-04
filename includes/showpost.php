@@ -93,7 +93,7 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
   </ul>
   </div>
   </div>
-  <div class="post-body">
+                                <div class="post-body">
                                     <p><?php echo $content;  ?></p>
                                     <div class="post-image" style="text-align: center;">
                                     <?php if (!empty($media)) {
@@ -190,17 +190,17 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                       <div class="comment-list">
                                           <div class="comment-image">
                                               <a href="<?php if ($user_id==$_SESSION['id_session']) {
-        echo 'my-profile.php';
-    }else {
-        echo 'profile.php?id='.$user['id_user'];
-    } ?>"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" style="width:50px;height:50px;"></a>
-                                          </div>
+                                                        echo 'my-profile.php';
+                                                    }else {
+                                                        echo 'profile.php?id='.$user['id_user'];
+                                                    } ?>"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" style="width:50px;height:50px;"></a>
+                                              </div>
                                           <div class="comment-info">
                                               <h3><a href="<?php if ($user_id==$_SESSION['id_session']) {
-        echo 'my-profile.php';
-    }else {
-        echo 'profile.php?id='.$user['id_user'];
-    } ?>"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
+                                                    echo 'my-profile.php';
+                                                }else {
+                                                    echo 'profile.php?id='.$user['id_user'];
+                                                } ?>"><?php echo $user['prenom_user']." ".$user['nom_user']; ?></a></h3>
                                               <span><?php echo $comment['created1_at']; ?></span>
                                               <p><?php echo $comment['comment']; ?></p>
                                               <ul class="comment-react">
@@ -214,10 +214,10 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                     <form class="post-footer" action="" method="POST" id="comment-form">
                                         <div class="footer-image">
                                             <a href="<?php if ($user_id==$_SESSION['id_session']) {
-        echo 'my-profile.php';
-    }else {
-        echo 'profile.php?id='.$user_id;
-    } ?>"><img src="<?php echo $rowIdSession['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
+                                                echo 'my-profile.php';
+                                            }else {
+                                                echo 'profile.php?id='.$user_id;
+                                            } ?>"><img src="<?php echo $rowIdSession['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
                                         </div>
                                             <div class="form-group">
                                                 <textarea id="content-of-comment-<?php echo $row['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>

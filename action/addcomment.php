@@ -20,6 +20,7 @@ if (!$post) {
     echo "Error: post not found.";
     exit;
 }
+$post_user_id = $post['id_user'];
 // Get the current timestamp
 $current_time = date('Y-m-d H:i:s');
 
@@ -32,22 +33,24 @@ $stmt_insertcomment->bindParam(':comment', $comment);
 $stmt_insertcomment->bindParam(':created_at', $current_time);
 
 if($stmt_insertcomment->execute()){
-
+    
+  $id_comment=$conn->lastInsertId();
 
    // Get the number of comments for the post
   $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
   $stmt_numcomment->bindParam(':id_post', $id_post);
   $stmt_numcomment->execute();
   $num_comments = $stmt_numcomment->fetch(PDO::FETCH_ASSOC);
-
-
-   
-
-// Insert a new row in the notifications table for the post user
-  $stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user, notification_type, id_type) VALUES (:id_user, 'comment', :id_type)");
+  
+  if($post_user_id!=$id_user){
+    
+  // Insert a new row in the notifications table for the post user
+  $stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user,id_post, notification_type,	id_comment) VALUES (:id_user,:id_post, 'comment', :id_comment)");
   $stmt_insertnotif->bindParam(':id_user', $id_user);
-  $stmt_insertnotif->bindParam(':id_type', $id_post);
+  $stmt_insertnotif->bindParam(':id_post',$id_post);
+  $stmt_insertnotif->bindParam(':id_comment', $id_comment);
   $stmt_insertnotif->execute();
+  }
 
   $userComment=$conn->prepare("SELECT imgprfl_user,nom_user,prenom_user FROM users where id_user = :id_user");
   $userComment->bindParam(':id_user', $id_user);

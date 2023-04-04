@@ -77,7 +77,8 @@ if ($id==false) {
                     </div>
                         <div class="item d-flex justify-content-between align-items-center">
                             <div class="figure">
-                                <a href="my-profile.html"><img src="assets/images/user/user-55.jpg" class="rounded-circle" alt="image"></a>
+                                <a href="<?php  echo 'profile.php?id='.$user['id_user'];?>">
+                                <img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" style="width:50px;height:50px;"></a>
                             </div>
                             <div class="text">
                                 <h4><a href="my-profile.html">James Vanwin</a></h4>

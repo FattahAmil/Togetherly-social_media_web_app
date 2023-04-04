@@ -15,6 +15,7 @@ if (!$post) {
     echo "Error: post not found.";
     exit;
 }
+$post_user_id = $post['id_user'];
 
 // Check if the user has already liked the post
 $id_user = $_SESSION['id_session']; 
@@ -35,6 +36,16 @@ if (!$like) {
     $stmt_insertlike->bindParam(':id_user', $id_user);
     $stmt_insertlike->bindParam(':like_type', $like_type);
     $stmt_insertlike->execute();
+   
+
+    if($post_user_id!=$id_user and $stmt_insertlike ){
+        // Insert a new row in the notifications table for the post user
+          $stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user, id_post, notification_type, id_like) VALUES (:id_user, :id_post, 'like', :id_like)");
+          $stmt_insertnotif->bindParam(':id_user', $id_user);
+          $stmt_insertnotif->bindParam(':id_post', $id_post);
+          $stmt_insertnotif->bindParam(':id_like', $id_like);
+          $stmt_insertnotif->execute();
+          }
     
 } else {
     $isLiked=true;
@@ -46,6 +57,12 @@ if (!$like) {
         $stmt_removelike->bindParam(':id_user', $id_user);
         $stmt_removelike->execute();
         $like_type = null;
+         // delete the row in the notifications table when the like is removed for the post user
+          $stmt_deletenotif = $conn->prepare("DELETE FROM notifications WHERE id_post = :id_post AND id_user = :id_user");
+          $stmt_deletenotif->bindParam(':id_user', $id_user);
+          $stmt_deletenotif->bindParam(':id_post', $id_post);
+          $stmt_deletenotif->execute(); 
+
     } else {
         // Update the existing like
         $stmt_updatelike = $conn->prepare("UPDATE likes SET likeType = :like_type WHERE id_post = :id_post AND id_user = :id_user");
