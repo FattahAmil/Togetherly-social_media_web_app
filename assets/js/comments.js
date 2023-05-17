@@ -15,7 +15,7 @@ function addcomments(id_post, content) {
           $("#number-comment"+id_post).text(datacomment1.num_comments);
 
           
-          //ajoute le comentaire  
+          //add the comment  
           $("#post-comment-list-"+id_post).append('<div class="comment-list"><div class="comment-image"><a href="my-profile.php"><img src="'+datacomment1.userInfo["imgprfl_user"]+'" class="rounded-circle" alt="image" width="60"></a></div><div class="comment-info"><h3><a href="my-profile.php">'+datacomment1.userInfo["prenom_user"]+' '+datacomment1.userInfo["nom_user"]+'</a></h3><span>'+datacomment1.createdAt+'</span><p>'+datacomment1.bodyComent+'</p><ul class="comment-react"><li><a href="#" class="like">Like(2)</a></li></ul></div></div>');
        
          

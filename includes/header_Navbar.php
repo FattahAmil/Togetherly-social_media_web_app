@@ -297,15 +297,22 @@ $donner =$req1->fetch();
                                         </div>
                                     </div>
                                 </div>
+                                  <!-- START NOTIFICATIONS  -->
+                                  <?php
+                                    // Retrieve the count of unread notifications
+                                    $stmt_count = $conn->prepare("SELECT COUNT(*) AS numnotif FROM notifications WHERE is_read = 0");
+                                    $stmt_count->execute();
+                                    $count_result = $stmt_count->fetch(PDO::FETCH_ASSOC);
+                                    $num_notifications = $count_result['numnotif'];
+                                    ?>
                                 <div class="option-item">
                                     <div class="dropdown notifications-nav-item">
                                         <a href="#" class="dropdown-bs-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="notifications-btn">
                                                 <i class="flaticon-bell"></i>
-                                                <span>1</span>
+                                                <span><?php echo $num_notifications ?></span>
                                             </div>
                                         </a>
-                                        
                                         <div class="dropdown-menu">
                                             <div class="notifications-header d-flex justify-content-between align-items-center">
                                                 <h3>Notifications</h3>
@@ -317,6 +324,7 @@ $donner =$req1->fetch();
                                         </div>
                                     </div>
                                 </div>
+                                 <!-- END NOTIFICATIONS  -->
                                 <div class="option-item">
                                     <div class="dropdown language-option">
                                         <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
