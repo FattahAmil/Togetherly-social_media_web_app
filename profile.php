@@ -6,7 +6,7 @@ $id_get=$_GET['id'];
 if ($id==false) {
     header("location:login.php");
 }
-if ($_GET['id']==null) {
+if ($_GET['id']==null || $_GET['id']==$_SESSION['id_session']) {
     header("location:my-profile.php");
 }
 
