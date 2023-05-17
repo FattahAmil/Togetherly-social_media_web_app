@@ -305,7 +305,7 @@ $donner =$req1->fetch();
                                                 <span>1</span>
                                             </div>
                                         </a>
-            
+                                        
                                         <div class="dropdown-menu">
                                             <div class="notifications-header d-flex justify-content-between align-items-center">
                                                 <h3>Notifications</h3>
@@ -313,9 +313,6 @@ $donner =$req1->fetch();
                                             </div>
                                             <div class="notifications-body" data-simplebar>
                                                 <?php include_once"includes/shownotifs.php" ?>
-                                                <div class="view-all-notifications-btn">
-                                                    <a href="notifications.html" class="default-btn">View All Notifications</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

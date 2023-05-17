@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 25 mars 2023 à 14:31
+-- Généré le : mer. 17 mai 2023 à 15:07
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -40,31 +40,19 @@ CREATE TABLE `comments` (
 -- Déchargement des données de la table `comments`
 --
 
-INSERT INTO `comments` (`id_comment`, `id_post`, `id_user`, `comment`, `created_at`) VALUES
-(64, 23, 1, 'hy', '2023-03-03 10:40:51'),
-(65, 23, 1, 'hyyyyy', '2023-03-03 10:41:00'),
-(66, 23, 1, 'malak', '2023-03-03 10:58:38'),
-(67, 23, 2, 'broo', '2023-03-03 13:55:34'),
-(68, 23, 2, 'hello', '2023-03-03 15:58:54'),
-(69, 20, 1, 'hy', '2023-03-03 16:55:27'),
-(70, 18, 2, 'hyyy', '2023-03-04 13:08:55'),
-(71, 22, 2, 'hhhhhhh', '2023-03-08 10:44:01'),
-(72, 25, 3, 'hyy', '2023-03-16 22:58:03'),
-(73, 25, 1, 'ghhh', '2023-03-17 13:29:34'),
-(74, 26, 1, 'hyy\n', '2023-03-17 23:18:23'),
-(75, 23, 1, 'hy', '2023-03-19 03:51:00'),
-(76, 27, 1, 'hyy\n', '2023-03-23 22:48:07'),
-(77, 28, 1, 'hyyy', '2023-03-23 22:48:49'),
-(78, 27, 1, 'hy\n', '2023-03-23 23:54:48'),
-(79, 23, 3, 'hy', '2023-03-25 02:33:20'),
-(80, 30, 1, 'nice tof', '2023-03-25 08:55:20'),
-(81, 30, 1, 'nice tofe a derarriii', '2023-03-25 08:55:41'),
-(82, 34, 1, 'hy', '2023-03-25 11:10:55'),
-(83, 33, 1, 'hy', '2023-03-25 14:17:23'),
-(84, 33, 1, 'hy', '2023-03-25 14:19:30'),
-(85, 33, 1, 'hy', '2023-03-25 14:19:31'),
-(86, 19, 1, 'hy', '2023-03-25 14:28:57'),
-(87, 27, 1, 'merieme', '2023-03-25 14:29:51');
+INSERT INTO `comments` (`id_comment`, `id_post`, `id_user`, `comment`, `media-comment`, `created_at`) VALUES
+(72, 29, 1, 'fffffff', NULL, '2023-04-02 16:16:15'),
+(73, 29, 1, 'rrrrrrrrrrrrrrrrrrrrrr', NULL, '2023-04-02 16:16:20'),
+(74, 29, 1, 'cccc', NULL, '2023-04-02 16:16:28'),
+(75, 29, 1, 'mn mewbf', NULL, '2023-04-02 16:16:33'),
+(76, 29, 1, 'dddddddddddddddddddddd', NULL, '2023-04-02 16:16:37'),
+(77, 29, 1, 'ccccccccccccc', NULL, '2023-04-02 16:16:41'),
+(78, 29, 1, 'ccccccccccccccccccccc', NULL, '2023-04-02 16:16:46'),
+(79, 29, 1, 'dccccccccccccccwedwed', NULL, '2023-04-02 16:16:53'),
+(80, 29, 1, 'dsqavbb', NULL, '2023-04-02 16:16:58'),
+(81, 31, 3, 'hy fettah', NULL, '2023-04-05 00:25:09'),
+(82, 29, 1, 'ewaa', NULL, '2023-04-05 00:26:12'),
+(83, 29, 1, 'jhj\n', NULL, '2023-05-15 16:24:34');
 
 -- --------------------------------------------------------
 
@@ -83,14 +71,10 @@ CREATE TABLE `follow` (
 --
 
 INSERT INTO `follow` (`id`, `id_follower`, `id_following`) VALUES
-(62, 1, 3),
-(63, 2, 1),
-(64, 2, 3),
-(66, 3, 2),
-(67, 4, 1),
-(74, 1, 2),
-(75, 3, 1),
-(76, 2, 4);
+(11, 1, 2),
+(12, 1, 3),
+(13, 3, 2),
+(14, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -110,34 +94,24 @@ CREATE TABLE `likes` (
 -- Déchargement des données de la table `likes`
 --
 
-INSERT INTO `likes` (`id_like`, `likeType`, `id_post`, `id_user`) VALUES
-(371, 'like', 22, 1),
-(374, 'like', 22, 2),
-(375, 'like', 21, 2),
-(376, 'like', 18, 2),
-(380, 'like', 19, 2),
-(381, 'like', 17, 2),
-(382, 'like', 23, 2),
-(384, 'like', 20, 1),
-(397, 'like', 23, 3),
-(434, 'like', 26, 1),
-(437, 'like', 29, 1),
-(438, 'like', 28, 1),
-(439, 'like', 27, 1),
-(448, 'like', 21, 1),
-(452, 'like', 18, 1),
-(453, 'like', 19, 1),
-(456, 'like', 25, 1),
-(457, 'like', 23, 1),
-(458, 'like', 25, 3),
-(459, 'like', 29, 3),
-(460, 'like', 18, 3),
-(461, 'like', 19, 3),
-(462, 'like', 30, 1),
-(464, 'like', 34, 1),
-(465, 'like', 33, 1),
-(466, 'like', 32, 1),
-(467, 'like', 31, 1);
+INSERT INTO `likes` (`id_like`, `likeType`, `created_at`, `id_post`, `id_user`) VALUES
+(1, 'like', '2023-03-25 11:57:35', 24, 3),
+(2, '', '2023-03-25 11:57:35', 24, 1),
+(4, 'like', '2023-03-25 11:57:35', 20, 2),
+(6, 'like', '2023-03-25 11:57:35', 17, 2),
+(13, 'like', '2023-03-25 11:57:35', 24, 2),
+(20, 'like', '2023-03-25 11:57:35', 25, 2),
+(22, 'like', '2023-03-25 11:57:35', 19, 3),
+(34, 'like', '2023-03-25 11:57:35', 26, 1),
+(35, 'love', '2023-03-25 11:57:35', 28, 3),
+(36, 'like', '2023-03-25 11:57:35', 29, 3),
+(88, 'like', '2023-05-15 15:16:31', 31, 3),
+(90, 'like', '2023-05-15 16:16:24', 31, 1),
+(91, 'like', '2023-05-15 16:16:33', 27, 1),
+(92, 'like', '2023-05-15 16:16:38', 23, 1),
+(93, 'like', '2023-05-17 13:29:04', 30, 3),
+(94, 'like', '2023-05-17 13:52:05', 29, 1),
+(114, 'like', '2023-05-17 14:01:17', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -149,7 +123,9 @@ CREATE TABLE `notifications` (
   `id_notification` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `notification_type` enum('post','comment','like') NOT NULL,
-  `id_type` int(11) NOT NULL,
+  `id_comment` int(11) DEFAULT NULL,
+  `id_like` int(11) DEFAULT NULL,
+  `id_post` int(11) DEFAULT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -158,10 +134,23 @@ CREATE TABLE `notifications` (
 -- Déchargement des données de la table `notifications`
 --
 
-INSERT INTO `notifications` (`id_notification`, `id_user`, `notification_type`, `id_type`, `is_read`, `created_at`) VALUES
-(8, 1, 'comment', 18, 0, '2023-03-25 13:26:58'),
-(9, 1, 'comment', 19, 0, '2023-03-25 13:28:57'),
-(10, 1, 'comment', 27, 0, '2023-03-25 13:29:51');
+INSERT INTO `notifications` (`id_notification`, `id_user`, `notification_type`, `id_comment`, `id_like`, `id_post`, `is_read`, `created_at`) VALUES
+(32, 1, 'comment', 72, NULL, NULL, 0, '2023-04-02 14:16:15'),
+(33, 1, 'comment', 73, NULL, NULL, 0, '2023-04-02 14:16:20'),
+(34, 1, 'comment', 74, NULL, NULL, 0, '2023-04-02 14:16:28'),
+(35, 1, 'comment', 75, NULL, NULL, 0, '2023-04-02 14:16:33'),
+(36, 1, 'comment', 76, NULL, NULL, 0, '2023-04-02 14:16:37'),
+(37, 1, 'comment', 77, NULL, NULL, 0, '2023-04-02 14:16:41'),
+(38, 1, 'comment', 78, NULL, NULL, 0, '2023-04-02 14:16:46'),
+(39, 1, 'comment', 79, NULL, NULL, 0, '2023-04-02 14:16:53'),
+(40, 1, 'comment', 80, NULL, NULL, 0, '2023-04-02 14:16:58'),
+(41, 3, 'comment', 81, NULL, NULL, 0, '2023-04-04 22:25:09'),
+(63, 3, 'like', NULL, NULL, 31, 0, '2023-05-15 14:16:31'),
+(66, 1, 'like', NULL, NULL, 27, 0, '2023-05-15 15:16:33'),
+(67, 1, 'like', NULL, NULL, 23, 0, '2023-05-15 15:16:38'),
+(68, 3, 'like', NULL, NULL, 30, 0, '2023-05-17 12:29:04'),
+(69, 1, 'like', NULL, NULL, 29, 0, '2023-05-17 12:52:05'),
+(89, 1, 'like', NULL, NULL, 17, 0, '2023-05-17 13:01:17');
 
 -- --------------------------------------------------------
 
@@ -182,24 +171,21 @@ CREATE TABLE `posts` (
 -- Déchargement des données de la table `posts`
 --
 
-INSERT INTO `posts` (`id_post`, `id_user`, `content`, `media`, `post_date`) VALUES
-(17, 2, 'hhhhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:26:37'),
-(18, 2, 'gggggggggggg', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:28:08'),
-(19, 2, 'gggggggggggg', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:29:41'),
-(20, 2, 'hhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:44:18'),
-(21, 2, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', NULL, '2023-02-22 23:57:19'),
-(22, 1, 'jjjjjjj', 'MTA_ San Andreas 2022-10-10 01-41-21.mp4', '2023-02-23 20:56:53'),
-(23, 2, 'mounire', 'Untitled Video - Google Chrome 2022-12-18 13-54-40.mp4', '2023-02-25 13:14:11'),
-(25, 3, 'hyyy how are you mercuary', NULL, '2023-03-16 22:57:49'),
-(26, 1, 'sincara', NULL, '2023-03-17 23:18:09'),
-(27, 1, 'bash', NULL, '2023-03-19 03:49:17'),
-(28, 1, 'koki', NULL, '2023-03-23 21:48:38'),
-(29, 1, 'hy', 'logo draganov.jfif', '2023-03-23 21:50:02'),
-(30, 1, 'hy mercyry', NULL, '2023-03-23 22:55:10'),
-(31, 1, 'ajax fetch', NULL, '2023-03-25 09:10:27'),
-(32, 1, 'hy', NULL, '2023-03-25 09:13:10'),
-(33, 1, 'hy', NULL, '2023-03-25 09:18:29'),
-(34, 1, 'bash', NULL, '2023-03-25 09:18:39');
+INSERT INTO `posts` (`id_post`, `id_user`, `content`, `media`, `post_date`, `num_likes`) VALUES
+(17, 2, 'hhhhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:26:37', 0),
+(18, 2, 'gggggggggggg', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:28:08', 0),
+(19, 2, 'gggggggggggg', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:29:41', 0),
+(20, 2, 'hhhhh', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-22 22:44:18', 0),
+(22, 2, 'nnnnnnnnnnnnnnnnnnnn', NULL, '2023-02-22 23:24:26', 0),
+(23, 2, 'ddddddddddddddd', NULL, '2023-02-22 23:26:03', 0),
+(24, 2, 'video', 'MTA_ San Andreas 2022-10-10 01-41-21.mp4', '2023-02-24 12:06:20', 0),
+(25, 3, 'nnnnnnnnnnnn', NULL, '2023-02-24 13:28:55', 0),
+(26, 3, 'hello there', '8421a9b1-7b61-4f17-ae45-ec021988184b.jpg', '2023-02-26 22:42:54', NULL),
+(27, 3, 'saaaaaaaaaaaaaalaaaaaaaaaaaaaaaaaaaaaaaaam', 'lettre.jpg', '2023-02-27 11:04:03', NULL),
+(28, 3, 'salut mohammed amine', 'musk.jpg', '2023-02-27 18:09:56', NULL),
+(29, 3, 'hhhhh fuck you a ftah', NULL, '2023-03-25 11:39:43', NULL),
+(30, 1, 'jnjj\r\n', NULL, '2023-03-25 12:48:33', NULL),
+(31, 1, 'ddddddddddddd ', NULL, '2023-03-25 12:59:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -224,14 +210,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `email_user`, `pass_user`, `admin_user`, `imgprfl_user`, `phone_user`, `gender_user`) VALUES
-(1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, './imgprofile/daraganov2.png', NULL, 'Unknown'),
+(1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, './imgprofile/avatar.svg', NULL, 'Unknown'),
 (2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234', 0, './imgprofile/avatar.svg', NULL, 'Unknown'),
-(3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, './imgprofile/mia2.jpg', NULL, 'Unknown');
+(3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, './imgprofile/avatar.svg', NULL, 'Unknown');
 
 --
 -- Index pour les tables déchargées
 --
-
 
 --
 -- Index pour la table `comments`
@@ -263,15 +248,8 @@ ALTER TABLE `likes`
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id_notification`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_type` (`id_type`);
-
---
--- Index pour la table `notifications`
---
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`id_notification`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_type` (`id_type`);
+  ADD KEY `fk_comments` (`id_comment`),
+  ADD KEY `fk_posts` (`id_post`);
 
 --
 -- Index pour la table `posts`
@@ -294,31 +272,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT pour la table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=468;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT pour la table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pour la table `users`
@@ -355,8 +333,9 @@ ALTER TABLE `likes`
 -- Contraintes pour la table `notifications`
 --
 ALTER TABLE `notifications`
+  ADD CONSTRAINT `fk_posts` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id_post`),
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `notifications_ibfk_4` FOREIGN KEY (`id_type`) REFERENCES `comments` (`id_post`) ON DELETE CASCADE;
+  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`id_comment`) REFERENCES `comments` (`id_comment`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `posts`

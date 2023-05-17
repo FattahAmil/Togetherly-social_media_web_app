@@ -37,9 +37,9 @@ if (!$like) {
     $stmt_insertlike->bindParam(':like_type', $like_type);
     $stmt_insertlike->execute();
    
-
     if($post_user_id!=$id_user and $stmt_insertlike ){
         // Insert a new row in the notifications table for the post user
+          $id_like = $conn->lastInsertId();
           $stmt_insertnotif = $conn->prepare("INSERT INTO notifications (id_user, id_post, notification_type, id_like) VALUES (:id_user, :id_post, 'like', :id_like)");
           $stmt_insertnotif->bindParam(':id_user', $id_user);
           $stmt_insertnotif->bindParam(':id_post', $id_post);
