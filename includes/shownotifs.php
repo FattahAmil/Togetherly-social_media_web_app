@@ -6,15 +6,6 @@
 <?php
 try {
     $stmt_notifications = $conn->prepare("
-<<<<<<< HEAD
-        SELECT n.id_user, c.id_comment, l.id_like, n.created_at, n.id_post
-        FROM notifications n
-        LEFT JOIN comments c ON n.id_comment = c.id_comment
-        LEFT JOIN likes l ON n.id_like = l.id_like
-        WHERE (n.notification_type = 'comment' AND (c.id_user IS NULL OR c.id_user != :session_id))
-            OR (n.notification_type = 'like' AND (l.id_user IS NULL OR l.id_user != :session_id))
-        ORDER BY n.created_at DESC
-=======
     SELECT n.id_user, c.id_comment, l.id_like, n.created_at
     FROM notifications n
     LEFT JOIN comments c ON n.id_comment = c.id_comment
@@ -22,7 +13,6 @@ try {
     WHERE (n.notification_type = 'comment' AND (c.id_user IS NULL OR c.id_user != :session_id) and n.id_user!= :session_id)
         OR (n.notification_type = 'like' AND (l.id_user IS NULL OR l.id_user != :session_id) and n.id_user!= :session_id)
     ORDER BY n.created_at DESC;
->>>>>>> 485f181cbf3b961554d1272dc9ca00ebdcab5a2c
     ");
     $stmt_notifications->bindParam(':session_id', $_SESSION['id_session']);
     $stmt_notifications->execute();
