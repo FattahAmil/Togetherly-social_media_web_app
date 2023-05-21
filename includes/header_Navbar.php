@@ -1,7 +1,8 @@
 <?php
 
-$req1 = $conn->query('SELECT * FROM users WHERE id_user='.$id);
-$donner =$req1->fetch();
+
+$req1 = $conn->query('SELECT * FROM users WHERE id_user='.$_SESSION['id_session']);
+$user =$req1->fetch();
 ?>
 <div class="navbar-area">
                 <div class="main-responsive-nav">
@@ -319,7 +320,7 @@ $donner =$req1->fetch();
                                                 <i class="flaticon-menu"></i>
                                             </div>
                                             <div class="notifications-body" data-simplebar>
-                                                <?php include_once"includes/shownotifs.php" ?>
+                                                <?php include_once "shownotifs.php" ?>
                                             </div>
                                         </div>
                                     </div>
@@ -351,16 +352,16 @@ $donner =$req1->fetch();
                                     <div class="dropdown profile-nav-item">
                                         <a href="#" class="dropdown-bs-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="menu-profile">
-                                                <img src="<?php echo $donner['imgprfl_user'];  ?>" width="80" class="rounded-circle" alt="image">
-                                                <span class="name"><?php echo $donner['nom_user']; ?></span>
+                                                <img src="<?php echo $user['imgprfl_user'];  ?>" width="80" class="rounded-circle" alt="image">
+                                                <span class="name"><?php echo $user['nom_user']; ?></span>
                                                 <span class="status-online"></span>
                                             </div>
                                         </a>
             
                                         <div class="dropdown-menu">
                                             <div class="profile-header">
-                                                <h3><?php echo $donner['nom_user']." ".$donner['prenom_user'];?></h3>
-                                                <a href="mailto:<?php echo $donner['email_user'];?>"><?php echo $donner['email_user'];?></a>
+                                                <h3><?php echo $user['nom_user']." ".$user['prenom_user'];?></h3>
+                                                <a href="mailto:<?php echo $user['email_user'];?>"><?php echo $user['email_user'];?></a>
                                             </div>
                                             <ul class="profile-body">
                                                 <li><i class="flaticon-user"></i> <a href="my-profile.php">My Profile</a></li>
@@ -563,7 +564,7 @@ $donner =$req1->fetch();
                                                     <i class="flaticon-menu"></i>
                                                 </div>
                                                 <div class="notifications-body">
-                                                <?php include_once"includes/shownotifs.php" ?>
+                                                <?php include_once "shownotifs.php" ?>
                                                 </div>
                                             </div> 
                                         </div>             
@@ -595,15 +596,15 @@ $donner =$req1->fetch();
                                             <a href="#" class="dropdown-bs-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div class="menu-profile">
                                                     <img src="assets/images/user/user-1.jpg" class="rounded-circle" alt="image">
-                                                    <span class="name"><?php echo $donner['nom_user']; ?></span>
+                                                    <span class="name"><?php echo $user['nom_user']; ?></span>
                                                     <span class="status-online"></span>
                                                 </div>
                                             </a>
                 
                                             <div class="dropdown-menu">
                                                 <div class="profile-header">
-                                                    <h3><?php echo $donner['nom_user']." ".$donner['prenom_user'];?></h3>
-                                                    <a href="mailto:<?php echo $donner['email_user'];?>"><?php echo $donner['email_user'];?></a>
+                                                    <h3><?php echo $user['nom_user']." ".$user['prenom_user'];?></h3>
+                                                    <a href="mailto:<?php echo $user['email_user'];?>"><?php echo $user['email_user'];?></a>
                                                 </div>
                                                 <ul class="profile-body">
                                                     <li><i class="flaticon-user"></i> <a href="my-profile.php">My Profile</a></li>

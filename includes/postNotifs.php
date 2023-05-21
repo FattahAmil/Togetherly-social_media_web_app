@@ -1,27 +1,104 @@
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>My Page</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/likes.js"></script>
-    <script src="./assets/js/comments.js"></script>
-</head>
 <?php
-    include_once './connection.php';
-    $id_post = $_GET['id'];
-     // show the post   
-    $stmt_post = $conn->query("select * from posts where id_post=:id_post");
-    $stmt_post->bindParam(':id_post', $id_post);
-    $stmt_post->execute();
-    $posts = $stmt_post->fetchAll(PDO::FETCH_ASSOC);
+session_start();
+require('../connection.php');
+$id=$_SESSION['id_session'];
+if ($id==false) {
+    header("location:login.php");
+}
+?>
 
-        foreach($posts as $post) {
+
+<!doctype html>
+<html lang="zxx">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Links of CSS files -->
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../assets/css/animate.min.css">
+        <link rel="stylesheet" href="../assets/css/remixicon.css">
+        <link rel="stylesheet" href="../assets/css/flaticon.css">
+        <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="../assets/css/magnific-popup.min.css">
+        <link rel="stylesheet" href="../assets/css/simplebar.min.css">
+        <link rel="stylesheet" href="../assets/css/metismenu.min.css">
+        <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+		<link rel="stylesheet" href="../assets/css/responsive.css">
+		
+		<title>Zust - Social Community & Marketplace HTML Template</title>
+
+        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    </head>
+
+    <body>
+
+        <!-- Start Preloader Area -->
+        <div class="preloader-area">
+            <div class="spinner">
+                <div class="inner">
+                    <div class="disc"></div>
+                    <div class="disc"></div>
+                    <div class="disc"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Preloader Area -->
+        
+        <!-- Start Main Content Wrapper Area -->
+        <div class="main-content-wrapper d-flex flex-column">
+
+            <!-- Start Navbar Area -->
+            <?php include_once "../includes/header_Navbar.php"; ?>
+            <!-- End Navbar Area -->
+            
+            <!-- Start Sidemenu Area -->
+            <?php include_once "../includes/Sidemenu.php"; ?>
+            <!-- End Sidemenu Area -->
+            
+            <!-- Start Content Page Box Area -->
+            <div class="content-page-box-area">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12">
+                        <aside class="widget-area">
+                            <!-- Start view-profile -->
+                            <?php include_once "../includes/view-profile.php";  ?>
+                            <!-- end view-profile -->
+                            <!--  start whatch video -->
+                            <?php include_once "../includes/watch-video.php"; ?>
+                            <!--  end whatch video -->     
+                            <div class="widget widget-advertisement">
+                                <h3 class="widget-title">Advertisement</h3>
+
+                                <div class="advertisement-image">
+                                    <a href="#"><img src="../assets/images/advertisement.jpg" alt="image"></a>
+                                </div>
+                            </div>
+                           
+                        </aside>
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-12">
+                        <div class="news-feed-area">
+                            
+                        <?php
+try{
+        $id_post = $_GET['id'];
+        // Show the post   
+        $stmt_post = $conn->query("SELECT * FROM posts WHERE id_post = " . $id_post);
+        $post = $stmt_post->fetch(PDO::FETCH_ASSOC);
+
+        if($post){
         $id_post = $post['id_post'];
         $user_id = $post['id_user'];
         $content = $post['content'];
         $media = $post['media'];
-        $post_date = $post['date'];
-        if ($post){
+        $post_date = $post['post_date'];
+       
         // Retrieve information about the user who posted the post
         $stmt_user = $conn->prepare("SELECT * FROM users WHERE id_user=:user_id");
         $stmt_user->bindParam(':user_id', $user_id);
@@ -49,10 +126,12 @@
             $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
             $stmt_numcomment->bindParam(':id_post', $id_post);
             $stmt_numcomment->execute();
-            $num_comments = $stmt_numcomment->fetchColumn();
+            $num_comments = $stmt_numcomment->fetchColumn();?>
 
+            <div class="col-lg-6 col-md-12">
+            <div class="news-feed-area">
 
-                // Display the post ?>
+             
                 <div class='news-feed news-feed-post'>
                 <div class='post-header d-flex justify-content-between align-items-center'>
                 <div class='image'>
@@ -226,6 +305,28 @@
  </div> 
 
 <?php
-}}
-
+}}catch(PDOException $e){
+    echo " failed: " . $e->getMessage();
+}
 ?>
+                           
+                    
+                </div>
+            </div>
+            <!-- End Content Page Box Area -->
+
+        </div>
+        <!-- End Main Content Wrapper Area -->
+         <!-- Links of JS files -->
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/jquery-ui.min.js"></script>
+        <script src="assets/js/simplebar.min.js"></script>
+        <script src="assets/js/metismenu.min.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

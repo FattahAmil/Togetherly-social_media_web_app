@@ -9,9 +9,9 @@ $req2->execute();
 
 <div class="widget widget-view-profile">
                                 <div class="profile-box d-flex justify-content-between align-items-center">
-                                    <a href="my-profile.php"><img src="<?php echo $donner['imgprfl_user'];  ?>" width="80" alt="image"></a>
+                                    <a href="my-profile.php"><img src="<?php echo $user['imgprfl_user'];  ?>" width="80" alt="image"></a>
                                     <div class="text ms-2">
-                                        <h3><a href="my-profile.php"><?php echo $donner['nom_user']." ".$donner['prenom_user']; ?></a></h3>
+                                        <h3><a href="my-profile.php"><?php echo $user['nom_user']." ".$user['prenom_user']; ?></a></h3>
                                         <span>Washington</span>
                                     </div>
                                 </div>

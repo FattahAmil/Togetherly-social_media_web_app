@@ -14,7 +14,7 @@ require_once 'connection.php';
 $stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
 FROM posts P,follow F 
 WHERE P.id_user=F.id_following 
-  AND F.id_follower=".$id_get." 
+AND F.id_follower=".$id_get." 
 UNION
 (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
 FROM posts 
