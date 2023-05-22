@@ -190,14 +190,14 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
 
                                       <div class="comment-list">
                                           <div class="comment-image">
-                                              <a href="<?php if ($user_id==$_SESSION['id_session']) {
+                                              <a href="<?php if ($user['id_user']==$_SESSION['id_session']) {
                                                     echo 'my-profile.php';
                                                 }else {
                                                     echo 'profile.php?id='.$user['id_user'];
                                                 } ?>"><img src="<?php echo $user['imgprfl_user']; ?>" class="rounded-circle" alt="image" style="width:50px;height:50px;"></a>
                                           </div>
                                           <div class="comment-info">
-                                              <h3><a href="<?php if ($user_id==$_SESSION['id_session']) {
+                                              <h3><a href="<?php if ($user['id_user']==$_SESSION['id_session']) {
                                                     echo 'my-profile.php';
                                                 }else {
                                                     echo 'profile.php?id='.$user['id_user'];
@@ -214,10 +214,10 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                     </div>
                                     <form class="post-footer" action="" method="POST" id="comment-form">
                                         <div class="footer-image">
-                                            <a href="<?php if ($user_id==$_SESSION['id_session']) {
+                                            <a href="<?php if ($user['id_user']==$_SESSION['id_session']) {
                                                     echo 'my-profile.php';
                                                 }else {
-                                                    echo 'profile.php?id='.$user_id;
+                                                    echo 'profile.php?id='.$user['id_user'];
                                                 } ?>"><img src="<?php echo $donner['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
                                         </div>
                                             <div class="form-group">
