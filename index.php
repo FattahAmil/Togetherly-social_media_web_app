@@ -88,11 +88,11 @@ if ($id==false) {
                         <div class="news-feed-area">
                             
                         <!--  start create post   -->
-                            <?php include_once'includes/create_post_page.php';   ?>                            
+                            <?php include_once 'includes/create_post_page.php';   ?>                            
                         <!--  start create post   -->
                         
                         <!--  start create post   -->
-                            <?php include_once'includes/showpost.php';   ?>                            
+                            <?php include_once 'includes/showpost.php';   ?>                            
                         <!--  end create post   -->
                            
                         </div>

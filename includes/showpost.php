@@ -6,22 +6,49 @@
     <script src="./assets/js/likes.js"></script>
     <script src="./assets/js/comments.js"></script>
 </head>
+
 <?php
+$html='';
+ob_start(); // Start output buffering
 
-require_once 'connection.php';
+if (isset($_GET['id'])) {
+   
 
-$stmt = $conn->query("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
-FROM posts P,follow F 
-WHERE P.id_user=F.id_following 
-  AND F.id_follower=".$_SESSION['id_session']." 
-UNION
-(SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
-FROM posts 
-WHERE id_user=".$_SESSION['id_session']." )ORDER BY date DESC");
-$stmtIdSession=$conn->query("SELECT * FROM users where id_user=".$_SESSION['id_session']);
-$rowIdSession=$stmtIdSession->fetch(PDO::FETCH_ASSOC);
+    $selected_post = $_GET['id'];
 
+    // Modify the SQL query to fetch only the selected post
+    $stmt = $conn->prepare("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts P, follow F 
+                            WHERE P.id_user = F.id_following 
+                                AND F.id_follower = :id_follower 
+                                AND P.id_post = :selected_post
+                            UNION
+                            (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts 
+                            WHERE id_user = :id_user
+                                AND id_post = :selected_post)
+                            ORDER BY date DESC");
+    $stmt->bindParam(':id_follower', $_SESSION['id_session']);
+    $stmt->bindParam(':id_user', $_SESSION['id_session']);
+    $stmt->bindParam(':selected_post', $selected_post);
+} else {
+    // If the 'selected_post' parameter is not present, fetch all posts as before
+    $stmt = $conn->prepare("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts P, follow F 
+                            WHERE P.id_user = F.id_following 
+                                AND F.id_follower = :id_follower 
+                            UNION
+                            (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts 
+                            WHERE id_user = :id_user)
+                            ORDER BY date DESC");
+    $stmt->bindParam(':id_follower', $_SESSION['id_session']);
+    $stmt->bindParam(':id_user', $_SESSION['id_session']);
+}
+$stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+ ob_start(); // Start output buffering for each post
+
   $id_post = $row['id_post'];
   $user_id = $row['id_user'];
   $content = $row['content'];
@@ -232,5 +259,10 @@ $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
                                     </form>
                                 </div>
  </div> <?php
+ $postHtml = ob_get_clean(); // Get the generated HTML for the post
+ $html .= $postHtml; // Append the post HTML to the $html variable
+
 }
+ob_end_clean(); // Clean and end output buffering
+echo $html;
 ?>

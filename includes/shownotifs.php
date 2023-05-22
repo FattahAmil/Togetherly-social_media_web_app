@@ -2,7 +2,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Include your custom JavaScript file -->
-<script src="./assets/js/notification.js"></script>
+<script src="./assets/js/notifications.js"></script>
 <?php
 try {
     $stmt_notifications = $conn->prepare("
@@ -42,15 +42,15 @@ try {
                     <?php
                         if (!empty($notification['id_comment'])) {
                             ?>
-                            <a href="includes/postNotifs.php?id=<?php echo $notification['id_post']; ?>">
-                                <span>Posted a comment on your status</span>
-                            </a>
+                            <span class="notification-item" data-post-id="<?php echo $notification['id_post']; ?>">
+                                Posted a comment on your status
+                            </span>
                             <?php
                         } elseif (!empty($notification['id_like'])) {
                             ?>
-                            <a href="includes/postNotifs.php?id=<?php echo $notification['id_post']; ?>">
-                                <span>Reacted to your status</span>
-                            </a>
+                            <span class="notification-item" data-post-id="<?php echo $notification['id_post']; ?>">
+                                Reacted to your status
+                            </span>
                             <?php
                         }
                         ?>
@@ -65,3 +65,24 @@ try {
     echo "Query failed: " . $e->getMessage();
 }
 ?>
+<script>
+$(document).ready(function() {
+    // Event listener for the notification item
+    $(document).on('click', '.notification-item', function() {
+        var postId = $(this).data('post-id');
+        var newsFeedArea = $('.news-feed-area');
+        console.log('id: '+postId)
+
+        // Send an AJAX request to retrieve the post content
+        $.ajax({
+            url: 'includes/postNotifs.php',
+            method: 'GET',
+            data: { post_id: postId },
+            success: function(response) {
+                // Update the news feed area with the retrieved post content
+                newsFeedArea.html(response);
+            }
+        });
+    });
+});
+</script>

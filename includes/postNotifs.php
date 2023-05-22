@@ -1,170 +1,119 @@
+
 <?php
-session_start();
-require('../connection.php');
-$id=$_SESSION['id_session'];
-if ($id==false) {
-    header("location:login.php");
+require_once "../connection.php";
+$html='';
+ob_start(); // Start output buffering
+
+if (isset($_GET['id'])) {
+   
+
+    $selected_post = $_GET['id'];
+
+    // Modify the SQL query to fetch only the selected post
+    $stmt = $conn->prepare("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts P, follow F 
+                            WHERE P.id_user = F.id_following 
+                                AND F.id_follower = :id_follower 
+                                AND P.id_post = :selected_post
+                            UNION
+                            (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts 
+                            WHERE id_user = :id_user
+                                AND id_post = :selected_post)
+                            ORDER BY date DESC");
+    $stmt->bindParam(':id_follower', $_SESSION['id_session']);
+    $stmt->bindParam(':id_user', $_SESSION['id_session']);
+    $stmt->bindParam(':selected_post', $selected_post);
+} else {
+    // If the 'selected_post' parameter is not present, fetch all posts as before
+    $stmt = $conn->prepare("SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts P, follow F 
+                            WHERE P.id_user = F.id_following 
+                                AND F.id_follower = :id_follower 
+                            UNION
+                            (SELECT id_post, id_user, content, media, DATE_FORMAT(post_date, '%M %d, %Y %H:%i:%S') AS date 
+                            FROM posts 
+                            WHERE id_user = :id_user)
+                            ORDER BY date DESC");
+    $stmt->bindParam(':id_follower', $_SESSION['id_session']);
+    $stmt->bindParam(':id_user', $_SESSION['id_session']);
 }
-?>
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+ ob_start(); // Start output buffering for each post
+
+  $id_post = $row['id_post'];
+  $user_id = $row['id_user'];
+  $content = $row['content'];
+  $media = $row['media'];
+  $post_date = $row['date'];
+
+  // Retrieve information about the user who posted the post
+  $stmt_user = $conn->prepare("SELECT * FROM users WHERE id_user=:user_id");
+  $stmt_user->bindParam(':user_id', $user_id);
+  $stmt_user->execute();
+  $result_user = $stmt_user->fetch(PDO::FETCH_ASSOC);
+  $username = $result_user['nom_user'] . ' ' . $result_user['prenom_user'];
+  $profile_image = $result_user['imgprfl_user'];
+
+  // Retrieve the number of likes for the post
+  $stmt_numlike = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_post = :id_post");
+  $stmt_numlike->bindParam(':id_post', $id_post);
+  $stmt_numlike->execute();
+  $num_likes = $stmt_numlike->fetchColumn();
+
+  
+
+// Check if the user has already liked the post
+$id_user = $_SESSION['id_session']; 
+$stmt_like = $conn->prepare("SELECT * FROM likes WHERE id_post = :id_post AND id_user = :id_user");
+$stmt_like->bindParam(':id_post', $id_post);
+$stmt_like->bindParam(':id_user', $id_user);
+$stmt_like->execute();
+$like = $stmt_like->fetch(PDO::FETCH_ASSOC);
 
 
-<!doctype html>
-<html lang="zxx">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Links of CSS files -->
-        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="../assets/css/animate.min.css">
-        <link rel="stylesheet" href="../assets/css/remixicon.css">
-        <link rel="stylesheet" href="../assets/css/flaticon.css">
-        <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
-        <link rel="stylesheet" href="../assets/css/magnific-popup.min.css">
-        <link rel="stylesheet" href="../assets/css/simplebar.min.css">
-        <link rel="stylesheet" href="../assets/css/metismenu.min.css">
-        <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="../assets/css/style.css">
-		<link rel="stylesheet" href="../assets/css/responsive.css">
-		
-		<title>Zust - Social Community & Marketplace HTML Template</title>
-
-        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-    </head>
-
-    <body>
-
-        <!-- Start Preloader Area -->
-        <div class="preloader-area">
-            <div class="spinner">
-                <div class="inner">
-                    <div class="disc"></div>
-                    <div class="disc"></div>
-                    <div class="disc"></div>
-                </div>
-            </div>
-        </div>
-        <!-- End Preloader Area -->
-        
-        <!-- Start Main Content Wrapper Area -->
-        <div class="main-content-wrapper d-flex flex-column">
-
-            <!-- Start Navbar Area -->
-            <?php include_once "../includes/header_Navbar.php"; ?>
-            <!-- End Navbar Area -->
-            
-            <!-- Start Sidemenu Area -->
-            <?php include_once "../includes/Sidemenu.php"; ?>
-            <!-- End Sidemenu Area -->
-            
-            <!-- Start Content Page Box Area -->
-            <div class="content-page-box-area">
-                <div class="row">
-                    <div class="col-lg-3 col-md-12">
-                        <aside class="widget-area">
-                            <!-- Start view-profile -->
-                            <?php include_once "../includes/view-profile.php";  ?>
-                            <!-- end view-profile -->
-                            <!--  start whatch video -->
-                            <?php include_once "../includes/watch-video.php"; ?>
-                            <!--  end whatch video -->     
-                            <div class="widget widget-advertisement">
-                                <h3 class="widget-title">Advertisement</h3>
-
-                                <div class="advertisement-image">
-                                    <a href="#"><img src="../assets/images/advertisement.jpg" alt="image"></a>
-                                </div>
-                            </div>
-                           
-                        </aside>
-                    </div>
-                    
-                    <div class="col-lg-6 col-md-12">
-                        <div class="news-feed-area">
-                            
-                        <?php
-try{
-        $id_post = $_GET['id'];
-        // Show the post   
-        $stmt_post = $conn->query("SELECT * FROM posts WHERE id_post = " . $id_post);
-        $post = $stmt_post->fetch(PDO::FETCH_ASSOC);
-
-        if($post){
-        $id_post = $post['id_post'];
-        $user_id = $post['id_user'];
-        $content = $post['content'];
-        $media = $post['media'];
-        $post_date = $post['post_date'];
-       
-        // Retrieve information about the user who posted the post
-        $stmt_user = $conn->prepare("SELECT * FROM users WHERE id_user=:user_id");
-        $stmt_user->bindParam(':user_id', $user_id);
-        $stmt_user->execute();
-        $result_user = $stmt_user->fetch(PDO::FETCH_ASSOC);
-        $username = $result_user['nom_user'] . ' ' . $result_user['prenom_user'];
-        $profile_image = $result_user['imgprfl_user'];
-
-        // Retrieve the number of likes for the post
-        $stmt_numlike = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_post = :id_post");
-        $stmt_numlike->bindParam(':id_post', $id_post);
-        $stmt_numlike->execute();
-        $num_likes = $stmt_numlike->fetchColumn();
-
-            // Check if the user has already liked the post
-            $id_user = $_SESSION['id_session']; 
-            $stmt_like = $conn->prepare("SELECT * FROM likes WHERE id_post = :id_post AND id_user = :id_user");
-            $stmt_like->bindParam(':id_post', $id_post);
-            $stmt_like->bindParam(':id_user', $id_user);
-            $stmt_like->execute();
-            $like = $stmt_like->fetch(PDO::FETCH_ASSOC);
+  // Get the number of comments for the post
+  $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
+  $stmt_numcomment->bindParam(':id_post', $id_post);
+  $stmt_numcomment->execute();
+  $num_comments = $stmt_numcomment->fetchColumn();
 
 
-            // Get the number of comments for the post
-            $stmt_numcomment = $conn->prepare("SELECT COUNT(*) AS num_comments FROM comments WHERE id_post = :id_post");
-            $stmt_numcomment->bindParam(':id_post', $id_post);
-            $stmt_numcomment->execute();
-            $num_comments = $stmt_numcomment->fetchColumn();?>
-
-            <div class="col-lg-6 col-md-12">
-            <div class="news-feed-area">
-
-             
-                <div class='news-feed news-feed-post'>
-                <div class='post-header d-flex justify-content-between align-items-center'>
-                <div class='image'>
-                <?php if (!empty($profile_image)) { ?>
-                    <a href="<?php if ($user_id==$_SESSION['id_session']) {
-                        echo 'my-profile.php';
-                    }else {
-                        echo 'profile.php?id='.$user_id;
-                    } ?>"><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' style="width:60px;height:60px;"  ></a>
-                <?php } ?>
-                </div>
-                <div class='info ms-3'>
-                <span class='name'><a href='<?php if ($user_id==$_SESSION['id_session']) {
-                        echo 'my-profile.php';
-                    }else {
-                        echo 'profile.php?id='.$user_id;
-                    } ?>'><?php echo $username ;?></a></span>
-                <span class='small-text'><a href='<?php if ($user_id==$_SESSION['id_session']) {
-                        echo 'my-profile.php';
-                    }else {
-                        echo 'profile.php?id='.$user_id;
-                    } ?>'><?php echo $post_date;?></a></span>
-                </div>
-                <div class='dropdown'>
-                <button class='dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='flaticon-menu'></i></button>
-                <ul class='dropdown-menu'>
-                <li><a class='dropdown-item d-flex align-items-center' href='#'><i class='flaticon-edit'></i> Edit Post</a></li>
-                <li><a class='dropdown-item d-flex align-items-center' href='#'><i class='flaticon-private'></i> Hide Post</a></li>
-                <li><a class='dropdown-item d-flex align-items-center' href='#'><i class='flaticon-trash'></i> Delete Post</a></li>
-                </ul>
-                </div>
-                </div>
-                                  <div class="post-body">
+  // Display the post ?>
+  <div class='news-feed news-feed-post'>
+  <div class='post-header d-flex justify-content-between align-items-center'>
+  <div class='image'>
+ <?php if (!empty($profile_image)) { ?>
+    <a href="<?php if ($user_id==$_SESSION['id_session']) {
+        echo 'my-profile.php';
+    }else {
+        echo 'profile.php?id='.$user_id;
+    } ?>"><img src='<?php echo $profile_image ;?>' class='rounded-circle' alt='Profile Image' style="width:60px;height:60px;"  ></a>
+ <?php } ?>
+ </div>
+  <div class='info ms-3'>
+  <span class='name'><a href='<?php if ($user_id==$_SESSION['id_session']) {
+        echo 'my-profile.php';
+    }else {
+        echo 'profile.php?id='.$user_id;
+    } ?>'><?php echo $username ;?></a></span>
+  <span class='small-text'><a href='<?php if ($user_id==$_SESSION['id_session']) {
+        echo 'my-profile.php';
+    }else {
+        echo 'profile.php?id='.$user_id;
+    } ?>'><?php echo $post_date;?></a></span>
+  </div>
+  <div class='dropdown'>
+  <button class='dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='flaticon-menu'></i></button>
+  <ul class='dropdown-menu'>
+  <li><a class='dropdown-item d-flex align-items-center' href='#'><i class='flaticon-edit'></i> Edit Post</a></li>
+  <li><a class='dropdown-item d-flex align-items-center' href='#'><i class='flaticon-private'></i> Hide Post</a></li>
+  <li><a class='dropdown-item d-flex align-items-center' href='#'><i class='flaticon-trash'></i> Delete Post</a></li>
+  </ul>
+  </div>
+  </div>
+                                <div class="post-body">
                                     <p><?php echo $content;  ?></p>
                                     <div class="post-image" style="text-align: center;">
                                     <?php if (!empty($media)) {
@@ -180,69 +129,69 @@ try{
                                     <ul class="post-meta-wrap d-flex justify-content-between align-items-center">
                                         
                                         <li class="post-react">
-                                        <a class="like-button" style="cursor:pointer;" data-type='like' data-post-id="<?php echo $post['id_post']; ?>"
-                                         onclick="addLike(<?php echo $post['id_post']; ?>, 'like')" a>
-                                            <i id="isLiked-<?php echo $post['id_post'];?>" class="<?php if (!$like){  
+                                        <a class="like-button" style="cursor:pointer;" data-type='like' data-post-id="<?php echo $row['id_post']; ?>"
+                                         onclick="addLike(<?php echo $row['id_post']; ?>, 'like')" a>
+                                            <i id="isLiked-<?php echo $row['id_post'];?>" class="<?php if (!$like){  
                                             echo "bi bi-hand-thumbs-up";}else {
                                             echo "bi bi-hand-thumbs-up-fill";
                                             }?>" ></i>
                                             <span>Like</span>
-                                            <span id="numberlike-<?php echo $post['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
+                                            <span id="numberlike-<?php echo $row['id_post'];?>" class="number"><?php echo $num_likes; ?></span>
                                         </a>
                                         
                                         <ul class="react-list">
                                         <li>
-                                            <a  data-type="like"  data-post-id="<?php echo $post['id_post']; ?>"
-                                             onclick="addLike(<?php echo $post['id_post']; ?>, 'like')">
+                                            <a  data-type="like"  data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'like')">
                                                 <img src="assets/images/react/react-1.png" alt="Like">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="love" data-type="love" data-post-id="<?php echo $post['id_post']; ?>"
-                                               onclick="addLike(<?php echo $post['id_post']; ?>, 'love')">
+                                            <a data-type="love" data-type="love" data-post-id="<?php echo $row['id_post']; ?>"
+                                               onclick="addLike(<?php echo $row['id_post']; ?>, 'love')">
                                                 <img src="assets/images/react/react-2.png" alt="Love">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="thankful" data-post-id="<?php echo $post['id_post']; ?>"
-                                             onclick="addLike(<?php echo $post['id_post']; ?>, 'thankful')">
+                                            <a data-type="thankful" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'thankful')">
                                                 <img src="assets/images/react/react-3.png" alt="thankful">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="haha" data-post-id="<?php echo $post['id_post']; ?>"
-                                             onclick="addLike(<?php echo $post['id_post']; ?>, 'haha')">
+                                            <a data-type="haha" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'haha')">
                                                 <img src="assets/images/react/react-7.png" alt="haha">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="wow" data-post-id="<?php echo $post['id_post']; ?>"
-                                             onclick="addLike(<?php echo $post['id_post']; ?>, 'wow')">
+                                            <a data-type="wow" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'wow')">
                                                 <img src="assets/images/react/react-4.png" alt="Wow">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="sad" data-post-id="<?php echo $post['id_post']; ?>"
-                                             onclick="addLike(<?php echo $post['id_post']; ?>, 'sad')">
+                                            <a data-type="sad" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'sad')">
                                                 <img src="assets/images/react/react-5.png" alt="Sad">
                                             </a>
                                         </li>
                                         <li>
-                                            <a data-type="angry" data-post-id="<?php echo $post['id_post']; ?>"
-                                             onclick="addLike(<?php echo $post['id_post']; ?>, 'angry')">
+                                            <a data-type="angry" data-post-id="<?php echo $row['id_post']; ?>"
+                                             onclick="addLike(<?php echo $row['id_post']; ?>, 'angry')">
                                                 <img src="assets/images/react/react-6.png" alt="Angry">
                                             </a>
                                         </li>
                                         </ul>
                                         </li>
                                         <li class="post-comment">
-                                            <a><i class="flaticon-comment"></i><span>Comment</span> <span class="number" id="number-comment<?php echo $post['id_post']; ?>"><?php echo $num_comments; ?> </span></a>
+                                            <a><i class="flaticon-comment"></i><span>Comment</span> <span class="number" id="number-comment<?php echo $row['id_post']; ?>"><?php echo $num_comments; ?> </span></a>
                                         </li>
                                         <li class="post-share">
                                             <a href="#"><i class="flaticon-share"></i><span>Share</span> <span class="number">24 </span></a>
                                         </li>
                                     </ul>
-                                    <div class="post-comment-list" id="post-comment-list-<?php echo $post['id_post'];?>">
+                                    <div class="post-comment-list" id="post-comment-list-<?php echo $row['id_post'];?>">
                                       <?php
                                           // Fetch comments for a post from the database
                                           $stmt_comments = $conn->prepare("SELECT id_user,DATE_FORMAT(created_at, '%M %d, %Y %H:%i:%S') AS created1_at,comment,id_post FROM comments WHERE id_post = :id_post ORDER BY created_at DESC limit 3 ");
@@ -288,13 +237,13 @@ try{
                                                 echo 'my-profile.php';
                                             }else {
                                                 echo 'profile.php?id='.$user_id;
-                                            } ?>"><img src="<?php echo $postIdSession['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
+                                            } ?>"><img src="<?php echo $rowIdSession['imgprfl_user'] ;?>" class="rounded-circle" alt="image" width="60"></a>
                                         </div>
                                             <div class="form-group">
-                                                <textarea id="content-of-comment-<?php echo $post['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
-                                               <!-- <input type="hidden" name="id_post" value="// echo $post['id_post']; "> -->
+                                                <textarea id="content-of-comment-<?php echo $row['id_post']; ?>" name="content-of-comment" class="form-control" placeholder="Write a comment..."></textarea>
+                                               <!-- <input type="hidden" name="id_post" value="// echo $row['id_post']; "> -->
                                                 <label>
-                                                    <a onclick="addcomments(<?php echo $post['id_post']; ?>,document.getElementById('content-of-comment-<?php echo $post['id_post']; ?>') )">
+                                                    <a onclick="addcomments(<?php echo $row['id_post']; ?>,document.getElementById('content-of-comment-<?php echo $row['id_post']; ?>') )">
                                                         <i class="bi bi-send-fill" style="cursor:pointer;"> </i>
                                                     </a>
                                                 </label>
@@ -302,31 +251,11 @@ try{
                                         </form>
                                     </form>
                                 </div>
- </div> 
+ </div> <?php
+ $postHtml = ob_get_clean(); // Get the generated HTML for the post
+ $html .= $postHtml; // Append the post HTML to the $html variable
 
-<?php
-}}catch(PDOException $e){
-    echo " failed: " . $e->getMessage();
 }
+ob_end_clean(); // Clean and end output buffering
+echo $html;
 ?>
-                           
-                    
-                </div>
-            </div>
-            <!-- End Content Page Box Area -->
-
-        </div>
-        <!-- End Main Content Wrapper Area -->
-         <!-- Links of JS files -->
-         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/jquery-ui.min.js"></script>
-        <script src="assets/js/simplebar.min.js"></script>
-        <script src="assets/js/metismenu.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/main.js"></script>
-    </body>
-</html>
