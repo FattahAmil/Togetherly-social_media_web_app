@@ -211,7 +211,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nom_user`, `prenom_user`, `email_user`, `pass_user`, `admin_user`, `imgprfl_user`, `phone_user`, `gender_user`) VALUES
 (1, 'amil', 'fattah', 'fattah.ptech2020@gmail.com', 'fattah2004', 0, './imgprofile/avatar.svg', NULL, 'Unknown'),
-(2, 'eddakoui', 'reda', 'reda@gmail.com', 'reda1234', 0, './imgprofile/avatar.svg', NULL, 'Unknown'),
 (3, 'belmoauddine', 'meriem', 'meriem@gmail.com', 'meriem1234', 0, './imgprofile/avatar.svg', NULL, 'Unknown');
 
 --
